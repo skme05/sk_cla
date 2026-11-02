@@ -1,0 +1,1094 @@
+<title>Gaël &amp; Clarisse — maquette</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&family=Manrope:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : page de proposition sobre qui encadre une maquette interactive.
+   La maquette est mono-thème par choix : nuit tropicale bleu nuit, soleil couchant rouge, mer animée. */
+:root{
+  --bg:#f5f6f8; --fg:#1b1f2a; --muted:#5b6172; --line:#dadde4; --panel:#ffffff; --accent:#b8202f;
+  --ui:"Manrope",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151d; --fg:#eceef3; --muted:#a2a8b8; --line:#2c303b; --panel:#1a1e28; --accent:#ff6b72; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151d; --fg:#eceef3; --muted:#a2a8b8; --line:#2c303b; --panel:#1a1e28; --accent:#ff6b72; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--ui);font-size:15px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding-block:32px 72px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:36px}
+h1,h2,h3,h4{text-wrap:balance;line-height:1.2;margin:0}
+.intro h1{font-size:clamp(26px,4vw,36px);font-weight:700;letter-spacing:-.01em}
+.intro p{max-width:70ch;color:var(--muted);margin:10px 0 0}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:end}
+.group{display:grid;gap:6px}
+.group > span{font-size:12px;color:var(--muted);font-weight:500}
+.seg{display:flex;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;padding:3px;background:var(--panel);gap:2px}
+.seg button{font:inherit;font-size:14px;border:0;background:transparent;color:var(--fg);padding:7px 12px;border-radius:7px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.frame{margin:0 auto;width:100%;max-width:1080px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:0 24px 60px -30px rgba(0,0,0,.45);transition:max-width .4s ease}
+.frame.phone{max-width:390px;border-radius:30px}
+.chrome{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--muted)}
+.chrome i{width:10px;height:10px;border-radius:50%;background:var(--line);display:block}
+.chrome .url{margin-left:8px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:var(--bg);padding:4px 10px;border-radius:6px}
+.viewport{max-height:820px;overflow-y:auto;overflow-x:hidden}
+
+/* ================= MAQUETTE ================= */
+.site{
+  --navy:#0b1533; --navy2:#13214d; --deep:#060c22; --red:#e0303f; --coral:#ff7a63; --sand:#f4e7d0; --muted2:#a9b3cf; --sline:rgba(244,231,208,.16); --ink:#fff;
+  --f-display:"Bodoni Moda",Didot,Georgia,serif; --f-body:"Jost",system-ui,sans-serif; --f-script:"Pinyon Script","Snell Roundhand",cursive;
+  container-type:inline-size;background:var(--navy);color:var(--sand);font-family:var(--f-body);font-size:16px;line-height:1.6;position:relative}
+.site section{padding:72px 24px;position:relative}
+.site .in{max-width:880px;margin:0 auto;position:relative}
+
+.s-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 22px;position:sticky;top:0;z-index:5;background:rgba(6,12,34,.82);backdrop-filter:blur(8px);border-bottom:1px solid var(--sline)}
+.s-mono{font-family:var(--f-script);font-size:26px;color:var(--sand);line-height:1}
+.s-mono b{color:var(--red);font-weight:400}
+.s-links{display:none;gap:22px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.s-links a{color:inherit;text-decoration:none;position:relative}
+.s-links a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.s-links a:hover::after{transform:scaleX(1)}
+@container (min-width:720px){.s-links{display:flex}}
+.s-cta{font:inherit;font-size:14px;font-weight:500;border:0;background:var(--red);color:var(--ink);padding:9px 18px;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-block;position:relative;overflow:hidden;transition:transform .2s}
+.s-cta:hover{transform:translateY(-2px)}
+.s-cta::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%,60%{left:-60%}100%{left:130%}}
+.s-cta:focus-visible,.s-btn:focus-visible{outline:2px solid var(--sand);outline-offset:3px}
+
+/* ---- Hero : ciel, soleil couchant, palmiers, mer ---- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--deep) 0%,var(--navy) 45%,#3a1a3f 82%,#6b1f35 100%);padding-top:56px;text-align:center}
+.stars{position:absolute;inset:0;pointer-events:none}
+.stars i{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--sand);animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--t)}
+@keyframes twinkle{0%,100%{opacity:.9}50%{opacity:.15}}
+.petals{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3}
+.hero-txt{position:relative;z-index:4;padding:0 20px}
+.kicker{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--muted2)}
+.names{font-family:var(--f-display);font-style:italic;font-weight:400;font-size:clamp(52px,14cqi,124px);line-height:1;margin:16px 0 8px;color:var(--sand)}
+.names .w{display:inline-block}
+.names .l{display:inline-block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 55ms + .2s)}
+.names .amp{font-family:var(--f-script);font-style:normal;color:var(--red);display:inline-block;margin:0 .1em;font-size:1.1em;animation:pulse 2.8s ease-in-out infinite}
+@keyframes rise{from{transform:translateY(.5em) rotate(6deg);opacity:.15;filter:blur(4px)}to{transform:none;opacity:1;filter:none}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.date{font-family:var(--f-display);font-size:clamp(18px,3.6cqi,24px)}
+.place{color:var(--muted2);margin-top:2px}
+.count{display:flex;justify-content:center;gap:8px;margin:28px 0 26px;font-variant-numeric:tabular-nums;flex-wrap:wrap}
+.count div{min-width:64px;padding:10px 6px;border:1px solid var(--sline);border-radius:12px;background:rgba(19,33,77,.55);backdrop-filter:blur(4px)}
+.count b{display:block;font-family:var(--f-display);font-size:26px;font-weight:500;line-height:1.1}
+.count b.tick{animation:pop .4s ease}
+@keyframes pop{0%{transform:perspective(200px) rotateX(-90deg);color:var(--coral)}60%{transform:perspective(200px) rotateX(15deg)}100%{transform:none}}
+.count small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2)}
+
+.horizon{position:relative;height:230px;margin-top:20px}
+.sun{position:absolute;left:50%;bottom:60px;width:190px;height:190px;margin-left:-95px;border-radius:50%;
+  background:radial-gradient(circle at 50% 40%,var(--coral),var(--red) 60%,#a3162a);box-shadow:0 0 80px 20px rgba(224,48,63,.45);animation:sunbob 9s ease-in-out infinite;z-index:1}
+@keyframes sunbob{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+.sea{position:absolute;left:0;right:0;bottom:0;height:96px;z-index:2;background:var(--navy)}
+.glint{position:absolute;left:50%;top:10px;width:140px;margin-left:-70px;display:grid;gap:9px;z-index:3}
+.glint i{height:3px;border-radius:3px;background:var(--coral);opacity:.7;animation:glint 2.4s ease-in-out infinite;animation-delay:var(--t)}
+@keyframes glint{0%,100%{transform:scaleX(.4);opacity:.25}50%{transform:scaleX(1);opacity:.8}}
+.wave{position:absolute;left:0;width:200%;height:60px;animation:drift linear infinite}
+.wave path{fill:currentColor}
+.w1{top:-34px;color:#1b2b63;animation-duration:14s}
+.w2{top:-20px;color:#142357;animation-duration:9s;animation-direction:reverse}
+.w3{top:-6px;color:var(--navy);animation-duration:6s}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.palm{position:absolute;bottom:70px;width:170px;z-index:2;color:var(--deep);pointer-events:none}
+.palm.l{left:-46px}.palm.r{right:-46px;transform:scaleX(-1)}
+.palm .sway{transform-origin:100px 112px;animation:sway 5s ease-in-out infinite}
+.palm.r .sway{animation-duration:6.4s;animation-delay:-2s}
+@keyframes sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(5deg)}}
+@container (min-width:720px){.palm{width:260px;bottom:60px}.palm.l{left:10px}.palm.r{right:10px}}
+
+/* ---- Révélations au défilement (l'élément reste visible au repos) ---- */
+.rv.on{animation:up .9s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0) * 110ms)}
+@keyframes up{from{transform:translateY(34px);opacity:.3}to{transform:none;opacity:1}}
+
+.lbl{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:10px}
+.h{font-family:var(--f-display);font-weight:400;font-size:clamp(30px,6cqi,46px);margin-bottom:30px}
+.h em{color:var(--coral)}
+.sep{display:block;width:120px;height:14px;margin:0 auto 22px;color:var(--red)}
+.sep path{stroke:currentColor;fill:none;stroke-width:2;stroke-dasharray:160;stroke-dashoffset:0}
+.on .sep path,.sep.on path{animation:draw 1.6s ease both}
+@keyframes draw{from{stroke-dashoffset:160}to{stroke-dashoffset:0}}
+
+/* ---- Mot d'invitation ---- */
+#mot{background:var(--navy)}
+.letter-wrap{display:grid;gap:28px;align-items:center}
+@container (min-width:720px){.letter-wrap{grid-template-columns:140px 1fr}}
+.bottle{width:110px;margin:0 auto;animation:float 4.5s ease-in-out infinite;color:var(--sand)}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-12deg)}50%{transform:translateY(-12px) rotate(-4deg)}}
+.letter{max-width:60ch;font-size:18px;text-align:center;margin:0 auto}
+@container (min-width:720px){.letter{text-align:left;margin:0}}
+.letter p{margin:0 0 16px}
+.fam{font-family:var(--f-display);font-style:italic;color:var(--muted2);font-size:16px}
+.sign{font-family:var(--f-script);font-size:36px;color:var(--coral);margin-top:6px}
+
+/* ---- Programme ---- */
+#prog{background:linear-gradient(180deg,var(--navy),var(--navy2))}
+.days{display:grid;gap:40px}
+@container (min-width:720px){.days{grid-template-columns:1fr 1fr}}
+.day h3{font-family:var(--f-display);font-weight:500;font-size:22px;margin-bottom:12px}
+.tl{position:relative;padding-left:26px;display:grid;gap:0}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--red),var(--coral));transform-origin:top}
+.tl.on::before{animation:grow 1.4s ease both}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.ev{position:relative;padding:12px 0;display:grid;grid-template-columns:62px 1fr;gap:12px}
+.ev::before{content:"";position:absolute;left:-25px;top:19px;width:12px;height:12px;border-radius:50%;background:var(--navy);border:2px solid var(--red)}
+.ev.hi::before{background:var(--red);animation:ring 2s ease-out infinite}
+@keyframes ring{0%{box-shadow:0 0 0 0 rgba(224,48,63,.7)}100%{box-shadow:0 0 0 12px rgba(224,48,63,0)}}
+.ev time{font-family:var(--f-display);font-size:20px;color:var(--coral);font-variant-numeric:tabular-nums;line-height:1.3}
+.ev strong{display:block;font-weight:500}
+.ev span{color:var(--muted2);font-size:15px}
+
+/* ---- Infos ---- */
+#infos{background:var(--navy2)}
+.cards{display:grid;gap:16px}
+@container (min-width:720px){.cards{grid-template-columns:repeat(3,1fr)}}
+.card{background:rgba(6,12,34,.5);border:1px solid var(--sline);border-radius:16px;padding:22px;min-width:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .35s}
+.card:hover{transform:translateY(-6px) rotate(-1deg);border-color:var(--red)}
+.card svg{width:34px;height:34px;color:var(--red);margin-bottom:10px}
+.card h4{margin:0 0 6px;font-family:var(--f-display);font-weight:500;font-size:20px}
+.card p{margin:0;color:var(--muted2);font-size:15px}
+.sw{display:flex;gap:6px;margin-top:12px}
+.sw i{width:26px;height:26px;border-radius:50%;border:1px solid var(--sline);display:block}
+
+/* ---- RSVP ---- */
+#rsvp{background:linear-gradient(180deg,var(--navy2),var(--deep));overflow:hidden}
+#rsvp .in{max-width:560px;text-align:center}
+.form{display:grid;gap:14px;text-align:left;background:rgba(19,33,77,.6);border:1px solid var(--sline);border-radius:20px;padding:22px;backdrop-filter:blur(6px)}
+.form.enter{animation:card .6s cubic-bezier(.2,.8,.2,1)}
+@keyframes card{from{transform:perspective(800px) rotateX(-18deg) translateY(16px)}to{transform:none}}
+.form label{font-size:14px;font-weight:500;display:grid;gap:6px}
+.inp{font:inherit;font-size:17px;padding:12px 14px;border:1px solid var(--sline);border-radius:12px;background:var(--deep);color:var(--sand);width:100%}
+.inp:focus{outline:2px solid var(--red);outline-offset:1px}
+.code{font-family:"IBM Plex Mono",ui-monospace,monospace;letter-spacing:.3em;text-transform:uppercase;text-align:center;font-size:24px}
+.shake{animation:shake .45s}
+@keyframes shake{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+.s-btn{font:inherit;font-weight:500;padding:13px 18px;border-radius:999px;border:1px solid var(--red);background:var(--red);color:var(--ink);cursor:pointer;transition:transform .2s}
+.s-btn:hover{transform:translateY(-2px)}
+.s-btn.ghost{background:transparent;color:var(--sand);border-color:var(--sline)}
+.err{color:var(--coral);font-size:14px;margin:0}
+.hint{font-size:13px;color:var(--muted2);margin:0}
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice label{border:1px solid var(--sline);border-radius:12px;padding:14px;text-align:center;cursor:pointer;font-weight:400;display:block;transition:all .25s}
+.choice input:checked + label{border-color:var(--red);background:rgba(224,48,63,.15);color:var(--sand)}
+.choice input:focus-visible + label{outline:2px solid var(--red);outline-offset:2px}
+.guest{font-family:var(--f-display);font-size:26px;margin:0}
+.done{text-align:center;justify-items:center}
+.tcard{width:100%;border-radius:16px;padding:22px 18px;background:linear-gradient(135deg,var(--red),#9d1427);color:var(--ink);position:relative;overflow:hidden;animation:flip 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes flip{from{transform:perspective(900px) rotateY(-100deg) scale(.9)}to{transform:none}}
+.tcard::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.07) 0 12px,transparent 12px 26px)}
+.tcard small{position:relative;font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.85}
+.tcard .tname{position:relative;font-family:var(--f-script);font-size:52px;line-height:1.1;display:block}
+.tcard .tsub{position:relative;font-size:14px;opacity:.9}
+.map{width:100%;max-width:100%;height:auto;margin-top:6px}
+.map text{font-family:"Jost",system-ui,sans-serif;font-size:9px;fill:var(--muted2)}
+.map .tb{fill:var(--navy2);stroke:var(--sline)}
+.map .me .tb{fill:var(--red);stroke:var(--red)}
+.map .me text{fill:var(--ink);font-weight:500}
+.map .me .halo{fill:none;stroke:var(--red);animation:halo 1.8s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes halo{from{transform:scale(1);opacity:.9}to{transform:scale(1.9);opacity:0}}
+.map .floor{fill:rgba(244,231,208,.06);stroke:var(--sline)}
+.map .water{fill:none;stroke:#3b5bb5;stroke-width:2}
+.burst{position:absolute;left:50%;top:40%;width:10px;height:14px;border-radius:60% 0 60% 0;background:var(--red);pointer-events:none;z-index:6;animation:burst 1.4s cubic-bezier(.1,.7,.3,1) forwards}
+.burst:nth-child(3n){background:var(--coral)}.burst:nth-child(4n){background:var(--sand)}
+@keyframes burst{from{transform:translate(0,0) rotate(0)}to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+
+.foot{text-align:center;padding:44px 24px 36px;color:var(--muted2);font-size:14px;background:var(--deep)}
+.foot b{color:var(--red);font-weight:500}
+
+
+/* ---- v3 : animations au défilement ---- */
+.progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--red),var(--coral));transform-origin:left;transform:scaleX(0)}
+.sun-wrap{position:absolute;inset:0;z-index:1;pointer-events:none;will-change:transform}
+.hero-txt,.palm,.stars{will-change:transform}
+.site section:not(.hs){overflow:hidden}
+.site .in{z-index:1}
+.leaf{position:absolute;width:150px;height:190px;color:rgba(224,48,63,.16);pointer-events:none;z-index:0;will-change:transform}
+.leaf.sm{width:90px;height:115px;color:rgba(255,122,99,.14)}
+.split .wd{display:inline-block}
+.split.on .wd{animation:wd .85s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--k) * 90ms)}
+@keyframes wd{from{transform:translateY(65%) rotate(5deg);opacity:.2;filter:blur(3px)}to{transform:none;opacity:1;filter:none}}
+.card.on{animation:wipe 1s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0) * 150ms)}
+@keyframes wipe{from{clip-path:inset(0 0 100% 0 round 16px);transform:translateY(40px)}to{clip-path:inset(0 0 0 0 round 16px);transform:none}}
+.tl.on .ev{animation:slide .7s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--e) * 160ms + .3s)}
+@keyframes slide{from{transform:translateX(-24px);opacity:.25}to{transform:none;opacity:1}}
+#prog{padding-bottom:120px}
+.boat{position:absolute;left:0;bottom:30px;width:110px;z-index:2;will-change:transform}
+.boat .bob{animation:bob 2.6s ease-in-out infinite;transform-origin:46px 26px}
+@keyframes bob{0%,100%{transform:rotate(-3deg) translateY(0)}50%{transform:rotate(3deg) translateY(3px)}}
+.boatsea{position:absolute;left:0;right:0;bottom:0;height:40px;background:linear-gradient(180deg,transparent,rgba(59,91,181,.25));border-top:1px solid rgba(59,91,181,.35)}
+.hs{padding:0!important;background:var(--deep)}
+.hs-sticky{position:sticky;top:var(--navh,58px);height:calc(var(--vph,760px) - var(--navh,58px));overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:18px;padding-block:20px}
+.hs-head{padding:0 24px;max-width:880px;width:100%;margin:0 auto}
+.hs-head .h{margin-bottom:0}
+.hs-track{display:flex;gap:18px;padding:0 24px;will-change:transform}
+.chap{flex:0 0 min(76cqi,340px);background:var(--navy);border:1px solid var(--sline);border-radius:18px;padding:14px 14px 18px;min-width:0}
+.chap .ph{aspect-ratio:16/10;max-width:100%;border-radius:12px;display:grid;place-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,231,208,.6);
+  background:radial-gradient(circle at 86% 84%,var(--red) 0 11%,transparent 12%),linear-gradient(160deg,hsl(var(--h) 55% 22%),hsl(var(--h) 60% 10%))}
+.chap .yr{display:block;font-family:var(--f-display);font-style:italic;font-size:44px;line-height:1;color:var(--red);margin:12px 0 4px}
+.chap h4{font-family:var(--f-display);font-weight:500;font-size:20px;margin:0 0 4px}
+.chap p{margin:0;color:var(--muted2);font-size:15px}
+.hs-dots{display:flex;gap:8px;justify-content:center}
+.hs-dots i{width:8px;height:8px;border-radius:50%;background:var(--sline);transition:background .3s,transform .3s}
+.hs-dots i.act{background:var(--red);transform:scale(1.4)}
+.site.still .hs{height:auto!important}
+.site.still .hs-sticky{position:static;height:auto}
+.site.still .hs-track{transform:none!important;overflow-x:auto}
+@media (prefers-reduced-motion:reduce){.hs{height:auto!important}.hs-sticky{position:static;height:auto}.hs-track{transform:none!important;overflow-x:auto}}
+
+
+/* ---- v4 : loader, esquisses, vie ---- */
+.vpwrap{position:relative}
+.loader{position:absolute;inset:0;z-index:20;background:radial-gradient(circle at 50% 46%,#13214d 0,#060c22 70%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#f4e7d0;clip-path:circle(150% at 50% 46%)}
+.loader.out{transition:clip-path 1s cubic-bezier(.7,0,.2,1);clip-path:circle(0% at 50% 46%)}
+.loader[hidden]{display:none!important}
+.ld-mono{width:min(78%,300px);height:auto}
+.ld-mono text{font-family:"Pinyon Script","Snell Roundhand",cursive;font-size:96px;fill:#f4e7d0;fill-opacity:0;stroke:#f4e7d0;stroke-width:.8;stroke-dasharray:900;stroke-dashoffset:900}
+.loader.go .ld-mono text{animation:pen 2s ease forwards}
+@keyframes pen{70%{fill-opacity:0}100%{stroke-dashoffset:0;fill-opacity:1}}
+.ld-date{font-family:"Bodoni Moda",Georgia,serif;letter-spacing:.4em;font-size:15px;opacity:.85;padding-left:.4em}
+.ld-wave{width:150px;height:16px}
+.ld-wave path{fill:none;stroke:#e0303f;stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.ld-pct{font-family:"IBM Plex Mono",monospace;font-size:12px;letter-spacing:.2em;color:#a9b3cf;font-variant-numeric:tabular-nums}
+.ld-place{position:absolute;bottom:26px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:#a9b3cf}
+.site.loading .names .l,.site.loading .names .amp{animation-play-state:paused}
+.site.reveal{animation:zoomin 1.2s cubic-bezier(.2,.8,.2,1)}
+@keyframes zoomin{from{transform:scale(1.06)}to{transform:none}}
+
+.snd{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--sand);background:transparent;border:1px solid var(--sline);border-radius:999px;padding:6px 10px;cursor:pointer;margin-left:auto;margin-right:10px}
+.snd svg{width:18px;height:18px}
+.snd .bars{opacity:.35}
+.snd[aria-pressed="true"]{border-color:var(--red);color:var(--coral)}
+.snd[aria-pressed="true"] .bars{opacity:1;animation:eq .8s ease-in-out infinite alternate;transform-origin:12px 10px}
+@keyframes eq{from{transform:scaleY(.4)}to{transform:scaleY(1)}}
+.snd:focus-visible{outline:2px solid var(--sand);outline-offset:2px}
+.s-nav{justify-content:flex-start}
+.s-links{margin-right:16px}
+
+.gulls{position:absolute;inset:0;pointer-events:none;z-index:2;color:rgba(244,231,208,.7)}
+.gull{position:absolute;left:-40px;top:var(--y);width:calc(28px * var(--s));animation:fly 26s linear infinite;animation-delay:var(--t)}
+.gull path{animation:flap .7s ease-in-out infinite alternate;transform-origin:center}
+@keyframes fly{from{transform:translate(0,0)}50%{transform:translate(calc(50cqi + 20px),-14px)}to{transform:translate(calc(100cqi + 80px),6px)}}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
+
+.sk{display:block;width:100%;height:auto;max-width:100%;aspect-ratio:300/190;border-radius:10px;
+  background:radial-gradient(rgba(27,39,83,.07) 1px,transparent 1.3px) 0 0/7px 7px,linear-gradient(160deg,#f6ecd8,#ead9bb)}
+.sk use{fill:none;stroke:#1b2753;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:0}
+.sk.on use{animation:ink 2.6s cubic-bezier(.4,0,.2,1) both}
+@keyframes ink{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.skf{margin:0;position:relative}
+.skf figcaption{position:absolute;left:8px;bottom:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:rgba(11,21,51,.8);color:var(--sand);padding:3px 8px;border-radius:999px}
+.lieu-intro{max-width:62ch;color:var(--muted2);margin:-14px 0 28px;font-size:17px}
+.gal{display:grid;gap:16px}
+@container (min-width:600px){.gal{grid-template-columns:1fr 1fr}.gcard.big{grid-column:1/-1}}
+.gcard{margin:0;background:rgba(6,12,34,.45);border:1px solid var(--sline);border-radius:16px;padding:10px;transition:transform .5s cubic-bezier(.2,.8,.2,1),border-color .4s;min-width:0}
+.gcard:hover{transform:translateY(-6px) rotate(-.6deg);border-color:var(--red)}
+.gcard figcaption{display:grid;gap:2px;padding:10px 6px 4px}
+.gcard b{font-family:var(--f-display);font-weight:500;font-size:19px}
+.gcard span{color:var(--muted2);font-size:14px}
+.sk-note{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);text-align:center;margin:20px 0 0}
+#lieu{background:linear-gradient(180deg,var(--navy2),var(--navy))}
+
+
+
+/* ---- v5 : encore plus d'animations ---- */
+.rays{position:absolute;left:50%;bottom:-75px;width:460px;height:460px;margin-left:-230px;border-radius:50%;
+  background:repeating-conic-gradient(rgba(255,122,99,.16) 0 4deg,transparent 4deg 14deg);
+  -webkit-mask:radial-gradient(circle,#000 20%,transparent 68%);mask:radial-gradient(circle,#000 20%,transparent 68%);animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.shoot{position:absolute;left:var(--x);top:var(--y);width:110px!important;height:1.5px!important;border-radius:2px;background:linear-gradient(90deg,transparent,#fff)!important;transform:rotate(18deg);opacity:0;animation:shoot 9s ease-in infinite!important;animation-delay:var(--t)!important}
+@keyframes shoot{0%,88%{opacity:0;transform:rotate(18deg) translateX(0)}90%{opacity:1}100%{opacity:0;transform:rotate(18deg) translateX(240px)}}
+.flies{position:absolute;inset:0;pointer-events:none;z-index:3}
+.flies i{position:absolute;bottom:var(--b);left:var(--l);width:4px;height:4px;border-radius:50%;background:#ffd2a8;box-shadow:0 0 8px 2px rgba(255,160,110,.8);animation:fly2 var(--d) ease-in-out infinite;animation-delay:var(--t)}
+@keyframes fly2{0%{transform:translate(0,0);opacity:0}20%{opacity:1}50%{transform:translate(var(--dx),-60px)}80%{opacity:.8}100%{transform:translate(calc(var(--dx) * -1),-130px);opacity:0}}
+.kicker.typing::after{content:"";display:inline-block;width:1px;height:1em;background:var(--red);margin-left:3px;vertical-align:-2px;animation:blink .7s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.marq{overflow:hidden;background:var(--red);color:var(--ink);padding-block:14px;border-block:1px solid rgba(255,255,255,.15)}
+.marq + section{border-top:0}
+.marq.alt{background:var(--deep);color:var(--sand)}
+.mq-track{display:flex;width:max-content;will-change:transform}
+.mq-track span{font-family:var(--f-display);font-size:clamp(22px,4.6cqi,34px);white-space:nowrap;padding-right:.4em;font-style:italic}
+.mq-track em{font-family:var(--f-script);font-style:normal}
+.mq-track b{font-weight:400;font-style:normal;display:inline-block;margin:0 .35em;animation:spin 6s linear infinite;color:var(--sand)}
+.marq.alt .mq-track b{color:var(--red)}
+.lanterns{position:absolute;inset:0;pointer-events:none;z-index:0}
+.lanterns i{position:absolute;bottom:-40px;left:var(--l);width:calc(14px * var(--s));height:calc(19px * var(--s));border-radius:40% 40% 30% 30%;
+  background:radial-gradient(circle at 50% 70%,#ffe2b0,#ff7a63 45%,#c4222f);box-shadow:0 0 18px 6px rgba(255,122,99,.35);opacity:.75;animation:lantern var(--d) linear infinite;animation-delay:var(--t)}
+@keyframes lantern{0%{transform:translate(0,0)}25%{transform:translate(12px,-260px)}50%{transform:translate(-10px,-520px)}100%{transform:translate(8px,-1100px);opacity:0}}
+.trail{position:absolute;width:9px;height:6px;border-radius:60% 0 60% 0;background:var(--red);pointer-events:none;z-index:30;animation:trail 1.1s ease-out forwards}
+.trail:nth-child(odd){background:var(--coral)}
+@keyframes trail{from{transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + 40px)) rotate(calc(var(--r) + 200deg)) scale(.3);opacity:0}}
+.ripple{position:absolute;width:20px;height:20px;margin:-10px 0 0 -10px;border-radius:50%;border:2px solid var(--coral);pointer-events:none;z-index:30;animation:ripple .8s ease-out forwards}
+@keyframes ripple{to{transform:scale(5);opacity:0}}
+.tilt{transition:transform .15s ease-out!important;transform-style:preserve-3d}
+.ev{transition:transform .3s}
+.ev:hover{transform:translateX(6px)}
+.ev:hover time{color:var(--sand)}
+.foot{position:relative;padding-top:90px!important;overflow:hidden}
+.foot-wave{position:absolute;left:0;right:0;top:0;height:50px;background:var(--navy)}
+.foot-wave .wave{top:auto;bottom:-30px}
+.foot-wave .w1{color:#13214d}.foot-wave .w3{color:var(--deep)}
+.pen{display:block;width:min(70%,280px);height:auto;margin:0 auto 4px}
+.pen text{font-family:"Pinyon Script","Snell Roundhand",cursive;font-size:56px;fill:var(--coral);stroke:var(--coral);stroke-width:.6;stroke-dasharray:700;stroke-dashoffset:0}
+.pen.on text{animation:pen2 2.4s ease both}
+@keyframes pen2{from{stroke-dashoffset:700;fill-opacity:0}70%{fill-opacity:0}to{stroke-dashoffset:0;fill-opacity:1}}
+
+
+/* ---- v6 : anime.js ---- */
+.ld-grid{position:absolute;inset:24px;display:grid;align-content:space-between;justify-items:center;row-gap:0;z-index:0;pointer-events:none}
+.ld-grid i{width:4px;height:4px;border-radius:50%;background:#e0303f;opacity:.15;display:block}
+.loader > :not(.ld-grid){position:relative;z-index:1}
+.loader .ld-place{position:absolute}
+.ld-enter{display:grid;gap:10px;justify-items:center;margin-top:8px}
+.ld-enter[hidden],.ld-pct[hidden],.form[hidden],.site [hidden]{display:none!important}
+.ld-btn{font:inherit;font-family:"Jost",system-ui,sans-serif;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#fff;background:#e0303f;border:0;border-radius:999px;padding:14px 26px;cursor:pointer;box-shadow:0 0 0 0 rgba(224,48,63,.6);animation:ring 2s ease-out infinite}
+.ld-mute{font:inherit;font-size:12px;letter-spacing:.12em;color:#a9b3cf;background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.ld-btn:focus-visible,.ld-mute:focus-visible{outline:2px solid #f4e7d0;outline-offset:3px}
+.site.ajs .names .l,.site.ajs .names .amp{animation:none}
+.site.ajs .split.on .wd{animation:none}
+.map g{transform-box:fill-box;transform-origin:center}
+
+
+/* ---- v7 : anime.js (suite) ---- */
+.emblem{width:84px;height:84px;display:block;margin:6px auto 0;overflow:visible}
+@container (min-width:720px){.emblem{margin:6px 0 0}}
+.emblem polygon{fill:var(--red);filter:drop-shadow(0 0 12px rgba(224,48,63,.5))}
+.mer{background:var(--deep);padding-inline:0!important}
+.mer .in{padding:0 24px}
+.mer-grid{display:grid;gap:0;justify-items:center;align-items:center;padding:6px 16px;cursor:pointer;touch-action:manipulation}
+.mer-grid i{width:7px;height:7px;border-radius:50%;background:#2c4590;display:block;margin:7px 0;pointer-events:none}
+.mer-grid i:nth-child(7n){background:#3b5bb5}
+.mer-hint{text-align:center;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted2);margin:18px 24px 0}
+.flight{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:7;overflow:visible}
+.flight path{fill:none;stroke:var(--coral);stroke-width:1.6;stroke-dasharray:4 6;opacity:0}
+.plane{position:absolute;left:0;top:0;width:30px;height:30px;margin:-15px 0 0 -15px;z-index:8;pointer-events:none;opacity:0}
+.plane svg{width:100%;height:100%;transform:rotate(-45deg)}
+.rings{display:block;width:110px;height:auto;margin:0 auto 6px;overflow:visible}
+.rings circle{fill:none;stroke:var(--sand);stroke-width:2.2}
+.rings circle:nth-of-type(2){stroke:var(--red)}
+.rings .gem{fill:var(--coral);transform-box:fill-box;transform-origin:center}
+
+
+/* ---- v8 : son au chargement, menu ---- */
+.ld-sound{position:absolute!important;top:14px;right:14px;display:inline-flex;align-items:center;gap:6px;font:inherit;font-family:"Jost",system-ui,sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#f4e7d0;background:rgba(19,33,77,.6);border:1px solid rgba(244,231,208,.25);border-radius:999px;padding:7px 12px;cursor:pointer}
+.ld-sound svg{width:18px;height:18px}
+.ld-sound[aria-pressed="true"]{border-color:#e0303f;color:#ff7a63}
+.ld-sound[aria-pressed="true"] svg{animation:wv 1.4s ease-in-out infinite}
+@keyframes wv{50%{transform:translateX(2px)}}
+.ld-sound[aria-pressed="false"] svg{opacity:.5}
+.ld-sound:focus-visible{outline:2px solid #f4e7d0;outline-offset:2px}
+.ld-tap{margin:4px 0 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#ff7a63;animation:blink2 1.6s ease-in-out infinite}
+.ld-tap[hidden]{display:none!important}
+@keyframes blink2{50%{opacity:.35}}
+#menu{background:linear-gradient(180deg,var(--navy2),var(--navy))}
+.mtabs{display:flex;flex-wrap:wrap;gap:8px;margin:-8px 0 26px}
+.mtabs button{font:inherit;font-size:14px;color:var(--sand);background:transparent;border:1px solid var(--sline);border-radius:999px;padding:7px 14px;cursor:pointer;transition:all .25s}
+.mtabs button[aria-pressed="true"]{background:var(--red);border-color:var(--red);color:var(--ink)}
+.mtabs button:focus-visible{outline:2px solid var(--sand);outline-offset:2px}
+.dishes{display:grid;gap:16px}
+@container (min-width:600px){.dishes{grid-template-columns:1fr 1fr}}
+@container (min-width:900px){.dishes{grid-template-columns:repeat(3,1fr)}}
+.dcard{display:grid;grid-template-columns:110px 1fr;gap:14px;align-items:center;background:rgba(6,12,34,.45);border:1px solid var(--sline);border-radius:18px;padding:14px;min-width:0}
+@container (min-width:600px){.dcard{grid-template-columns:1fr;text-align:center}}
+.dcard[hidden]{display:none!important}
+.dimg{position:relative;border-radius:50%;background:radial-gradient(circle,rgba(244,231,208,.12),transparent 70%);aspect-ratio:1;max-width:100%}
+@container (min-width:600px){.dimg{width:72%;margin:6px auto 0}}
+.dish{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
+.dish .plate{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.dcard:hover .dish .plate{transform:rotate(25deg)}
+.dtxt{min-width:0}
+.dcourse{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.dcard h4{font-family:var(--f-display);font-weight:500;font-size:19px;margin:2px 0 4px}
+.dcard p{margin:0;color:var(--muted2);font-size:14px}
+.dtag{display:inline-block;margin-top:8px;font-size:11px;letter-spacing:.08em;border:1px solid var(--coral);color:var(--coral);border-radius:999px;padding:2px 9px}
+.steam{position:absolute;left:50%;top:-6%;width:40%;height:40%;transform:translateX(-50%);display:flex;justify-content:space-between;pointer-events:none;z-index:1}
+.steam i{width:2px;height:100%;border-radius:2px;background:linear-gradient(transparent,rgba(244,231,208,.55),transparent);animation:steam 2.4s ease-in-out infinite;opacity:0}
+.steam i:nth-child(2){animation-delay:.6s}.steam i:nth-child(3){animation-delay:1.2s}
+@keyframes steam{0%{transform:translateY(20%) scaleY(.6) skewX(0);opacity:0}40%{opacity:.9}100%{transform:translateY(-40%) scaleY(1.2) skewX(14deg);opacity:0}}
+
+.site.still *,.site.still *::before,.site.still *::after{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){.site *,.site *::before,.site *::after{animation:none!important;transition:none!important}.frame{transition:none}}
+
+/* ================= PLAN ================= */
+.plan{display:grid;gap:26px}
+.plan h2{font-size:24px;font-weight:700}
+.cols{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.box h3{font-size:16px;margin-bottom:8px}
+.box ul,.box ol{margin:0;padding-left:20px;display:grid;gap:4px}
+.small{font-size:13px;color:var(--muted)}
+.flow{padding:0!important;gap:0!important;counter-reset:f}
+.flow li{list-style:none;display:grid;grid-template-columns:34px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.flow li:last-child{border-bottom:0}
+.flow li::before{counter-increment:f;content:counter(f);width:28px;height:28px;border-radius:50%;border:1px solid var(--accent);color:var(--accent);display:grid;place-items:center;font-family:var(--mono);font-size:13px}
+.flow strong{display:block}
+.wa{font-family:var(--mono);font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px;white-space:pre-wrap;margin:8px 0 0}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:520px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500}
+td:first-child{font-weight:500;white-space:nowrap}
+.ask{columns:2 260px;gap:28px}
+.ask li{break-inside:avoid;margin-bottom:6px}
+</style>
+
+<div class="wrap">
+  <header class="intro">
+    <div class="eyebrow">Maquette v8 · 13 février 2027 · Grand-Bassam</div>
+    <h1>Gaël &amp; Clarisse</h1>
+    <p>Un chargement élégant ouvre le site, puis la nuit tropicale en rouge et bleu nuit : soleil couchant, vagues, palmiers, mouettes et pétales d'hibiscus. Les photos sont remplacées par des esquisses du lieu qui se dessinent à l'écran, en attendant les vraies. Les vagues se font entendre dès le chargement (un bouton en haut permet de les couper). Le menu montre chaque plat en illustration. Touchez les prénoms pour les faire exploser, et la mer pour faire des vagues. Sur ordinateur, bougez la souris : des pétales suivent le curseur et les cartes s'inclinent. Faites défiler la maquette : le soleil se couche, les palmiers s'écartent, notre histoire défile à l'horizontale et une pirogue traverse le programme. Testez la confirmation avec un code : l'invité découvre sa table sur le plan de la salle. Les horaires, lieux précis, textes et invités restent des exemples en attendant vos informations.</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="group"><span>Écran</span>
+      <div class="seg" id="devs">
+        <button type="button" data-dev="phone" aria-pressed="true">Téléphone</button>
+        <button type="button" data-dev="desk" aria-pressed="false">Ordinateur</button>
+      </div>
+    </div>
+    <div class="group"><span>Chargement</span><div class="seg"><button type="button" id="replay" aria-pressed="false">Rejouer le loader</button></div></div>
+    <div class="group"><span>Animations</span>
+      <div class="seg" id="mot-tog">
+        <button type="button" data-m="on" aria-pressed="true">Activées</button>
+        <button type="button" data-m="off" aria-pressed="false">Coupées</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="frame phone" id="frame">
+    <div class="chrome"><i></i><i></i><i></i><span class="url">gael-et-clarisse.com</span></div>
+    <div class="vpwrap">
+    <div class="loader" id="loader">
+      <div class="ld-grid" id="ldgrid" aria-hidden="true"></div>
+      <button class="ld-sound" id="ldsound" type="button" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 14 q3 -4 6 0 t6 0 t6 0 M2 19 q3 -4 6 0 t6 0 t6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span id="ldsoundtxt">Vagues activées</span></button>
+      <svg class="ld-mono" viewBox="0 0 320 130"><text x="160" y="92" text-anchor="middle">G &amp; C</text></svg>
+      <div class="ld-date">13 · 02 · 2027</div>
+      <svg class="ld-wave" viewBox="0 0 200 20"><path id="ldw" pathLength="1" d="M0 10 Q 12.5 0 25 10 T 50 10 T 75 10 T 100 10 T 125 10 T 150 10 T 175 10 T 200 10"/></svg>
+      <p class="ld-tap" id="ldtap" hidden>Touchez l'écran pour entendre la mer</p>
+      <div class="ld-pct"><span id="ldp">0</span> %</div>
+      <div class="ld-enter" id="ldenter" hidden>
+        <button class="ld-btn" id="ldopen" type="button">Ouvrir l'invitation</button>
+      </div>
+      <div class="ld-place">Grand-Bassam · Côte d'Ivoire</div>
+    </div>
+    <div class="viewport" id="vp">
+      <div class="site" id="site">
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="sk-plage" viewBox="0 0 300 190"><circle cx="214" cy="80" r="24" fill="#e0303f" fill-opacity=".5" stroke="none"/><circle pathLength="1" cx="214" cy="80" r="24"/><path pathLength="1" d="M8 102 H292"/><path pathLength="1" d="M20 120 q10 -6 20 0 t20 0 t20 0"/><path pathLength="1" d="M118 130 q10 -6 20 0 t20 0 t20 0 t20 0"/><path pathLength="1" d="M200 112 q8 -5 16 0 t16 0"/><path pathLength="1" d="M0 152 C 80 140 200 162 300 146"/><path pathLength="1" d="M60 178 C 56 140 52 110 66 74"/><path pathLength="1" d="M67 178 C 63 140 59 110 71 76"/><path pathLength="1" d="M68 74 C 50 60 30 62 16 78"/><path pathLength="1" d="M68 74 C 56 52 40 44 26 46"/><path pathLength="1" d="M68 74 C 74 52 70 40 58 28"/><path pathLength="1" d="M68 74 C 88 58 108 58 122 70"/><path pathLength="1" d="M68 74 C 90 72 104 84 108 100"/><path d="M152 166 Q 192 178 236 166 L 230 172 Q 192 182 158 172Z" fill="#e0303f" fill-opacity=".5" stroke="none"/><path pathLength="1" d="M152 166 Q 192 178 236 166 L 230 172 Q 192 182 158 172Z"/><path pathLength="1" d="M196 156 L 222 178"/><path pathLength="1" d="M222 40 q6 -6 12 0 q6 -6 12 0"/><path pathLength="1" d="M250 54 q4 -4 8 0 q4 -4 8 0"/></symbol><symbol id="sk-maison" viewBox="0 0 300 190"><path d="M48 80 L150 40 L252 80 Z" fill="#e0303f" fill-opacity=".5" stroke="none"/><path pathLength="1" d="M48 80 L150 40 L252 80 Z"/><path pathLength="1" d="M8 170 H292"/><path pathLength="1" d="M60 170 V80 M240 80 V170"/><path pathLength="1" d="M56 120 H244 M56 108 H244 M70 108 v12 M80 108 v12 M90 108 v12 M100 108 v12 M110 108 v12 M120 108 v12 M130 108 v12 M140 108 v12 M150 108 v12 M160 108 v12 M170 108 v12 M180 108 v12 M190 108 v12 M200 108 v12 M210 108 v12 M220 108 v12 M230 108 v12"/><path pathLength="1" d="M70 170 V142 Q 90 122 110 142 V170 M110 170 V142 Q 130 122 150 142 V170 M150 170 V142 Q 170 122 190 142 V170 M190 170 V142 Q 210 122 230 142 V170 "/><path pathLength="1" d="M80 102 V86 H100 V102 Z M90 86 V102 M140 102 V86 H160 V102 Z M150 86 V102 M200 102 V86 H220 V102 Z M210 86 V102 "/><path pathLength="1" d="M104 90 l4 6 l-2 6"/><path pathLength="1" d="M268 170 C 266 140 266 120 272 100"/><path pathLength="1" d="M272 100 C 260 92 252 94 246 100 M272 100 C 284 90 294 92 298 98 M272 100 C 270 88 274 80 280 76"/></symbol><symbol id="sk-phare" viewBox="0 0 300 190"><path d="M137 82 H163 L165 98 H135Z M133 116 H167 L169 132 H131Z" fill="#e0303f" fill-opacity=".5" stroke="none"/><path pathLength="1" d="M128 162 L140 62 H160 L172 162 Z"/><path pathLength="1" d="M137 82 H163 M135 98 H165 M133 116 H167 M131 132 H169"/><path pathLength="1" d="M132 62 H168"/><path pathLength="1" d="M142 62 V46 H158 V62"/><path pathLength="1" d="M140 46 Q150 32 160 46"/><path pathLength="1" d="M162 52 L250 30"/><path pathLength="1" d="M162 56 L250 74"/><path pathLength="1" d="M146 162 V148 Q150 143 154 148 V162"/><path pathLength="1" d="M90 166 C 110 150 130 156 140 166 M160 166 C 176 152 200 154 214 166"/><path pathLength="1" d="M10 176 q10 -4 20 0 t20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path pathLength="1" d="M60 40 q6 -6 12 0 q6 -6 12 0"/></symbol><symbol id="sk-lagune" viewBox="0 0 300 190"><circle cx="250" cy="56" r="14" fill="#e0303f" fill-opacity=".5" stroke="none"/><circle pathLength="1" cx="250" cy="56" r="14"/><path pathLength="1" d="M8 88 q10 -14 20 -4 q12 -16 24 -2 q10 -14 20 -4 q12 -16 24 -2 q10 -14 20 -4 q12 -16 24 -2 q10 -14 20 -4 q12 -16 24 -2 q10 -14 20 -4 q12 -16 24 -2 q10 -14 20 -4 q12 -16 24 -2"/><path pathLength="1" d="M4 104 H296"/><path pathLength="1" d="M20 120 h40 M90 126 h60 M170 118 h30 M40 140 h70 M140 146 h50 M210 138 h60 M100 160 h80 M220 158 h50 "/><path pathLength="1" d="M62 134 V92"/><path pathLength="1" d="M62 122 Q 50 126 44 142 M62 122 Q 74 126 78 142 M62 114 Q 42 118 34 142 M62 114 Q 82 118 90 142"/><path pathLength="1" d="M28 94 q10 -24 30 -16 q14 -18 32 0 q14 4 6 18 q-30 8 -68 -2Z"/><path pathLength="1" d="M172 136 Q 204 144 238 136"/><path pathLength="1" d="M206 135 V118"/><circle pathLength="1" cx="206" cy="113" r="4"/><path pathLength="1" d="M206 122 L232 98"/></symbol><symbol id="sk-paillote" viewBox="0 0 300 190"><path pathLength="1" d="M60 104 L150 50 L240 104 Z"/><path pathLength="1" d="M150 50 L76 104 M150 50 L92 104 M150 50 L108 104 M150 50 L124 104 M150 50 L140 104 M150 50 L156 104 M150 50 L172 104 M150 50 L188 104 M150 50 L204 104 M150 50 L220 104 M150 50 L236 104 "/><path pathLength="1" d="M80 170 V104 M220 170 V104"/><path pathLength="1" d="M60 104 Q 150 156 240 104"/><circle cx="72" cy="110.5" r="3" fill="#e0303f" stroke="none"/><circle cx="88" cy="117.7" r="3" fill="#e0303f" stroke="none"/><circle cx="104" cy="123.2" r="3" fill="#e0303f" stroke="none"/><circle cx="120" cy="127.1" r="3" fill="#e0303f" stroke="none"/><circle cx="136" cy="129.4" r="3" fill="#e0303f" stroke="none"/><circle cx="152" cy="130.0" r="3" fill="#e0303f" stroke="none"/><circle cx="168" cy="129.0" r="3" fill="#e0303f" stroke="none"/><circle cx="184" cy="126.3" r="3" fill="#e0303f" stroke="none"/><circle cx="200" cy="122.0" r="3" fill="#e0303f" stroke="none"/><circle cx="216" cy="116.0" r="3" fill="#e0303f" stroke="none"/><circle cx="232" cy="108.4" r="3" fill="#e0303f" stroke="none"/><path pathLength="1" d="M8 172 H292"/><ellipse cx="150" cy="152" rx="30" ry="6" fill="#e0303f" fill-opacity=".5" stroke="none"/><path pathLength="1" d="M120 152 a30 6 0 1 0 60 0 a30 6 0 1 0 -60 0"/><path pathLength="1" d="M130 156 V172 M170 156 V172"/><path pathLength="1" d="M104 172 V150 M196 172 V150"/></symbol><symbol id="sk-ville" viewBox="0 0 300 190"><path d="M62 84 L74 58 L86 84Z" fill="#e0303f" fill-opacity=".5" stroke="none"/><path pathLength="1" d="M10 120 V96 H30 V120 M36 120 V70 H56 V120 M62 120 V84 L74 58 L86 84 V120 M92 120 V60 H106 V120 M112 120 V90 H140 V120 M146 120 V76 H164 V120 M220 120 V100 H246 V120 M252 120 V88 H270 V120"/><path pathLength="1" d="M4 120 H296"/><path pathLength="1" d="M150 128 Q 200 108 296 128 M150 128 V140 M190 120 V140 M240 117 V140 M290 127 V140"/><path pathLength="1" d="M20 150 h40 M90 156 h60 M170 118 h30 M40 140 h70 M140 146 h50 M210 138 h60 M100 160 h80 M220 158 h50 "/><path pathLength="1" d="M222 40 q6 -6 12 0 q6 -6 12 0"/><path pathLength="1" d="M250 54 q4 -4 8 0 q4 -4 8 0"/></symbol><symbol id="sk-bague" viewBox="0 0 300 190"><circle cx="150" cy="122" r="44" fill="#e0303f" fill-opacity=".5" stroke="none"/><path pathLength="1" d="M60 122 H240"/><path pathLength="1" d="M106 122 A44 44 0 0 1 194 122"/><circle pathLength="1" cx="150" cy="94" r="22"/><path pathLength="1" d="M140 72 L150 60 L160 72 L150 80 Z M140 72 H160"/><path pathLength="1" d="M40 140 q10 -5 20 0 t20 0 t20 0 t20 0 t20 0 t20 0"/><path pathLength="1" d="M70 156 q10 -5 20 0 t20 0 t20 0 t20 0"/></symbol></svg>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="leaf" viewBox="0 0 100 130"><path fill="currentColor" d="M50 2 C 92 30 98 86 52 128 C 6 90 8 34 50 2Z"/><path d="M50 12 V124 M50 40 L28 24 M50 40 L72 24 M50 64 L20 48 M50 64 L80 48 M50 88 L24 74 M50 88 L76 74" stroke="#0b1533" stroke-width="3" fill="none"/></symbol></svg>
+        <nav class="s-nav" id="snav">
+          <span class="s-mono">G<b>&amp;</b>C</span>
+          <button class="snd" id="snd" type="button" aria-pressed="false" title="Bruit des vagues"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 14 q3 -4 6 0 t6 0 t6 0 M2 19 q3 -4 6 0 t6 0 t6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 3 v7 M15 5 v3 M9 5 v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" class="bars"/></svg><span>Vagues</span></button>
+          <div class="s-links"><a href="#mot">Invitation</a><a href="#histoire">Histoire</a><a href="#prog">Programme</a><a href="#menu">Menu</a><a href="#lieu">Le lieu</a><a href="#infos">Infos</a><a href="#mer">La mer</a></div>
+          <a class="s-cta" href="#rsvp">Confirmer</a>
+          <span class="progress" id="pbar"></span>
+        </nav>
+
+        <header class="hero" id="hero">
+          <div class="stars" id="stars"><i class="shoot" style="--t:1s;--x:20%;--y:6%"></i><i class="shoot" style="--t:5.5s;--x:60%;--y:2%"></i></div>
+          <div class="gulls" aria-hidden="true"><svg class="gull" viewBox="0 0 24 10" style="--t:0s;--y:14%;--s:1"><path d="M0 6 Q 6 0 12 6 Q 18 0 24 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="gull" viewBox="0 0 24 10" style="--t:-7s;--y:22%;--s:0.7"><path d="M0 6 Q 6 0 12 6 Q 18 0 24 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="gull" viewBox="0 0 24 10" style="--t:-13s;--y:9%;--s:0.85"><path d="M0 6 Q 6 0 12 6 Q 18 0 24 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><svg class="gull" viewBox="0 0 24 10" style="--t:-18s;--y:30%;--s:0.6"><path d="M0 6 Q 6 0 12 6 Q 18 0 24 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+          <canvas class="petals" id="petals"></canvas>
+          <div class="hero-txt" id="htxt">
+            <div class="kicker" id="kick">Sous les tropiques, nous nous marions</div>
+            <h2 class="names" id="names" aria-label="Gaël et Clarisse" title="Touchez nos prénoms"><span class="w">Gaël</span><span class="amp">&amp;</span><span class="w">Clarisse</span></h2>
+            <div class="date">Samedi 13 février 2027</div>
+            <div class="place">Grand-Bassam, Côte d'Ivoire</div>
+            <div class="count" aria-label="Compte à rebours">
+              <div><b id="cd-d">—</b><small>jours</small></div>
+              <div><b id="cd-h">—</b><small>heures</small></div>
+              <div><b id="cd-m">—</b><small>min</small></div>
+              <div><b id="cd-s">—</b><small>sec</small></div>
+            </div>
+            <a class="s-cta" href="#rsvp">Confirmer ma présence</a>
+          </div>
+          <div class="horizon">
+            <svg class="palm l" id="palmL" viewBox="0 0 200 320" aria-hidden="true"><path d="M104 112 C 92 180, 96 250, 92 320" stroke="currentColor" stroke-width="9" fill="none"/><g class="sway" fill="currentColor" id="fr"><path d="M104 112 C 70 80, 30 78, 2 100 C 34 92, 70 96, 104 112Z"/><path d="M104 112 C 80 70, 50 50, 20 54 C 50 66, 78 86, 104 112Z"/><path d="M104 112 C 110 70, 100 40, 80 18 C 96 50, 100 80, 104 112Z"/><path d="M104 112 C 130 74, 166 64, 196 80 C 166 78, 134 92, 104 112Z"/><path d="M104 112 C 142 100, 176 112, 194 140 C 168 120, 136 116, 104 112Z"/><path d="M104 112 C 70 112, 40 132, 26 162 C 48 136, 76 122, 104 112Z"/><circle cx="104" cy="116" r="7"/></g></svg>
+            <svg class="palm r" id="palmR" viewBox="0 0 200 320" aria-hidden="true"><path d="M104 112 C 92 180, 96 250, 92 320" stroke="currentColor" stroke-width="9" fill="none"/><g class="sway" fill="currentColor"><use href="#fr"/></g></svg>
+            <div class="sun-wrap" id="sunw"><div class="rays"></div><div class="sun"></div></div><div class="flies" id="flies" aria-hidden="true"></div>
+            <div class="sea">
+              <svg class="wave w1" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 Q 75 4 150 30 T 300 30 T 450 30 T 600 30 V60 H0Z"/></svg>
+              <svg class="wave w2" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 Q 75 10 150 30 T 300 30 T 450 30 T 600 30 V60 H0Z"/></svg>
+              <div class="glint" aria-hidden="true"><i style="--t:0s"></i><i style="--t:.4s;margin:0 18px"></i><i style="--t:.8s;margin:0 34px"></i></div>
+              <svg class="wave w3" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 Q 75 16 150 30 T 300 30 T 450 30 T 600 30 V60 H0Z"/></svg>
+            </div>
+          </div>
+        </header>
+
+        <div class="marq" aria-hidden="true"><div class="mq-track"><span>Gaël <em>&amp;</em> Clarisse <b>✦</b> 13 · 02 · 2027 <b>✦</b> Grand-Bassam <b>✦</b> Sous les tropiques <b>✦</b> </span><span>Gaël <em>&amp;</em> Clarisse <b>✦</b> 13 · 02 · 2027 <b>✦</b> Grand-Bassam <b>✦</b> Sous les tropiques <b>✦</b> </span><span>Gaël <em>&amp;</em> Clarisse <b>✦</b> 13 · 02 · 2027 <b>✦</b> Grand-Bassam <b>✦</b> Sous les tropiques <b>✦</b> </span><span>Gaël <em>&amp;</em> Clarisse <b>✦</b> 13 · 02 · 2027 <b>✦</b> Grand-Bassam <b>✦</b> Sous les tropiques <b>✦</b> </span></div></div>
+        <section id="mot"><svg class="leaf" data-par="0.35" style="right:-40px;top:10px"><use href="#leaf"/></svg><svg class="leaf sm" data-par="-0.2" style="left:-30px;bottom:20px"><use href="#leaf"/></svg><div class="in">
+          <svg class="sep rv" viewBox="0 0 120 14" aria-hidden="true"><path d="M0 7 Q 15 0 30 7 T 60 7 T 90 7 T 120 7"/></svg>
+          <div class="letter-wrap">
+            <svg class="bottle" viewBox="0 0 80 160" aria-hidden="true"><rect x="31" y="4" width="18" height="10" rx="2" fill="#8a5a3c"/><path d="M33 14 h14 v26 c0 8 18 16 18 34 v70 c0 8 -6 12 -12 12 h-26 c-6 0 -12 -4 -12 -12 v-70 c0 -18 18 -26 18 -34Z" fill="rgba(160,200,230,.18)" stroke="currentColor" stroke-width="2"/><rect x="26" y="78" width="28" height="52" rx="4" fill="#f4e7d0" transform="rotate(-6 40 104)"/><path d="M30 92 h20 M30 100 h18 M30 108 h20 M30 116 h14" stroke="#e0303f" stroke-width="1.5" transform="rotate(-6 40 104)"/></svg>
+            <div class="letter rv">
+              <span class="lbl">Notre mot d'invitation</span>
+              <p class="fam">Les familles de Gaël et de Clarisse ont la grande joie de vous annoncer le mariage de leurs enfants</p>
+              <p>Nous avons choisi la mer pour nous dire oui : le bruit des vagues, le sable sous les pieds et le soleil qui se couche sur l'Atlantique. Nous voulons vivre ce moment entourés de ceux que nous aimons.</p>
+              <p>Ce site rassemble tout ce qu'il faut savoir. Confirmez votre présence avec le code reçu par WhatsApp avant le 13 janvier 2027 : vous découvrirez votre table.</p>
+              <svg class="emblem" viewBox="-60 -60 120 120" aria-hidden="true"><polygon id="morph" points="41.0,0.0 38.4,3.4 33.0,5.8 29.9,8.0 31.5,11.5 34.9,16.3 35.5,20.5 31.5,22.1 25.7,21.5 21.9,21.9 21.5,25.7 22.1,31.5 20.5,35.5 16.3,34.9 11.5,31.5 8.0,29.9 5.8,33.0 3.4,38.4 0.0,41.0 -3.4,38.4 -5.8,33.0 -8.0,29.9 -11.5,31.5 -16.3,34.9 -20.5,35.5 -22.1,31.5 -21.5,25.7 -21.9,21.9 -25.7,21.5 -31.5,22.1 -35.5,20.5 -34.9,16.3 -31.5,11.5 -29.9,8.0 -33.0,5.8 -38.4,3.4 -41.0,0.0 -38.4,-3.4 -33.0,-5.8 -29.9,-8.0 -31.5,-11.5 -34.9,-16.3 -35.5,-20.5 -31.5,-22.1 -25.7,-21.5 -21.9,-21.9 -21.5,-25.7 -22.1,-31.5 -20.5,-35.5 -16.3,-34.9 -11.5,-31.5 -8.0,-29.9 -5.8,-33.0 -3.4,-38.4 -0.0,-41.0 3.4,-38.4 5.8,-33.0 8.0,-29.9 11.5,-31.5 16.3,-34.9 20.5,-35.5 22.1,-31.5 21.5,-25.7 21.9,-21.9 25.7,-21.5 31.5,-22.1 35.5,-20.5 34.9,-16.3 31.5,-11.5 29.9,-8.0 33.0,-5.8 38.4,-3.4"/></svg>
+              <div class="sign">Gaël &amp; Clarisse</div>
+            </div>
+          </div>
+        </div></section>
+
+        <section id="histoire" class="hs"><div class="hs-sticky" id="hss">
+          <div class="hs-head"><span class="lbl">Notre histoire</span><h3 class="h split">De la première rencontre <em>au oui</em></h3></div>
+          <div class="hs-track" id="track">
+            <article class="chap"><figure class="skf"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-ville"/></svg><figcaption>Esquisse · photo à venir</figcaption></figure><span class="yr">2019</span><h4>La rencontre</h4><p>Un mariage d'amis à Abidjan. Une danse, puis une conversation qui ne s'est jamais arrêtée.</p></article>
+            <article class="chap"><figure class="skf"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-plage"/></svg><figcaption>Esquisse · photo à venir</figcaption></figure><span class="yr">2021</span><h4>Grand-Bassam, déjà</h4><p>Notre premier week-end à deux, sur cette plage. Nous ne savions pas encore que nous y reviendrions.</p></article>
+            <article class="chap"><figure class="skf"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-bague"/></svg><figcaption>Esquisse · photo à venir</figcaption></figure><span class="yr">2025</span><h4>La demande</h4><p>Au coucher du soleil, les pieds dans l'eau. Elle a dit oui avant la fin de la question.</p></article>
+            <article class="chap"><figure class="skf"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-paillote"/></svg><figcaption>Esquisse · photo à venir</figcaption></figure><span class="yr">2027</span><h4>Le grand jour</h4><p>Le 13 février, face au golfe de Guinée. Et vous serez là.</p></article>
+          </div>
+          <div class="hs-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        </div></section>
+
+        <section id="prog"><svg class="leaf" data-par="0.3" style="left:-50px;top:40px"><use href="#leaf"/></svg><svg class="boat" id="boat" viewBox="-4 -24 100 64" aria-hidden="true"><g class="bob"><path d="M44 20 L44 -20 L74 16Z" fill="#e0303f"/><path d="M42 20 L42 -8 L22 16Z" fill="#f4e7d0" opacity=".8"/><path d="M0 20 Q 45 34 92 20 L 85 29 Q 45 38 7 29Z" fill="#060c22" stroke="#f4e7d0" stroke-opacity=".3"/></g></svg><div class="boatsea" aria-hidden="true"></div><div class="in">
+          <span class="lbl rv">Programme</span>
+          <h3 class="h split">Un week-end <em>les pieds dans le sable</em></h3>
+          <div class="days">
+            <div class="day rv" style="--i:1">
+              <h3>Vendredi 12 février</h3>
+              <div class="tl rv">
+                <div class="ev"><time>15:00</time><div><strong>Remise de la dot</strong><span>Cérémonie coutumière, villa familiale</span></div></div>
+                <div class="ev"><time>19:30</time><div><strong>Dîner des familles</strong><span>Attiéké-poisson braisé face à la mer</span></div></div>
+              </div>
+            </div>
+            <div class="day rv" style="--i:2">
+              <h3>Samedi 13 février</h3>
+              <div class="tl rv">
+                <div class="ev"><time>10:00</time><div><strong>Mariage civil</strong><span>Mairie de Grand-Bassam</span></div></div>
+                <div class="ev hi"><time>16:30</time><div><strong>Cérémonie face à la mer</strong><span>Sur la plage, sous l'arche d'hibiscus</span></div></div>
+                <div class="ev"><time>18:30</time><div><strong>Coucher du soleil &amp; cocktail</strong><span>Jus de coco, bissap, photos</span></div></div>
+                <div class="ev"><time>20:00</time><div><strong>Dîner &amp; soirée dansante</strong><span>Sous la paillote, jusqu'au bout de la nuit</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div></section>
+
+        <section id="menu"><svg class="leaf sm" data-par="0.3" style="left:-20px;top:40px"><use href="#leaf"/></svg><div class="in">
+          <span class="lbl rv">Le menu</span>
+          <h3 class="h split">À table, <em>sous la paillote</em></h3>
+          <div class="mtabs" id="mtabs" role="tablist">
+            <button type="button" data-f="all" aria-pressed="true">Tout</button><button type="button" data-f="cocktail" aria-pressed="false">Cocktail</button><button type="button" data-f="entree" aria-pressed="false">Entrée</button><button type="button" data-f="plat" aria-pressed="false">Plats</button><button type="button" data-f="dessert" aria-pressed="false">Desserts</button><button type="button" data-f="boisson" aria-pressed="false">Boissons</button>
+          </div>
+          <div class="dishes" id="dishes">
+<article class="dcard" data-cat="cocktail"><div class="dimg"><div class="steam" aria-hidden="true"><i></i><i></i><i></i></div><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><circle r="47" fill="#efe7d8"/><circle r="47" fill="none" stroke="#d6c9b2" stroke-width="1.5"/><circle r="35" fill="#fbf7ef" stroke="#e6dccb"/><ellipse cx="-16" cy="-12" rx="7" ry="4.5" transform="rotate(20 -16 -12)" fill="#f0a33a" stroke="#c46d1d" stroke-width="1"/><ellipse cx="-6" cy="-18" rx="7" ry="4.5" transform="rotate(-30 -6 -18)" fill="#f0a33a" stroke="#c46d1d" stroke-width="1"/><ellipse cx="-20" cy="0" rx="7" ry="4.5" transform="rotate(70 -20 0)" fill="#f0a33a" stroke="#c46d1d" stroke-width="1"/><ellipse cx="-9" cy="-5" rx="7" ry="4.5" transform="rotate(-10 -9 -5)" fill="#f0a33a" stroke="#c46d1d" stroke-width="1"/><ellipse cx="-14" cy="12" rx="7" ry="4.5" transform="rotate(40 -14 12)" fill="#f0a33a" stroke="#c46d1d" stroke-width="1"/><ellipse cx="-3" cy="8" rx="7" ry="4.5" transform="rotate(-60 -3 8)" fill="#f0a33a" stroke="#c46d1d" stroke-width="1"/><line x1="2" y1="-20" x2="30" y2="2" stroke="#8a5a3c" stroke-width="1.6"/><rect x="3.2" y="-19.8" width="7" height="7" rx="2" fill="#7a3b1e" transform="rotate(38 6.7 -16.3)"/><rect x="7.8" y="-16.2" width="7" height="7" rx="2" fill="#d6332f" transform="rotate(38 11.3 -12.7)"/><rect x="12.5" y="-12.5" width="7" height="7" rx="2" fill="#7a3b1e" transform="rotate(38 16.0 -9.0)"/><rect x="17.2" y="-8.8" width="7" height="7" rx="2" fill="#5b8f3a" transform="rotate(38 20.7 -5.3)"/><rect x="21.8" y="-5.2" width="7" height="7" rx="2" fill="#7a3b1e" transform="rotate(38 25.3 -1.7)"/><line x1="2" y1="-4" x2="30" y2="18" stroke="#8a5a3c" stroke-width="1.6"/><rect x="3.2" y="-3.8" width="7" height="7" rx="2" fill="#7a3b1e" transform="rotate(38 6.7 -0.3)"/><rect x="7.8" y="-0.2" width="7" height="7" rx="2" fill="#d6332f" transform="rotate(38 11.3 3.3)"/><rect x="12.5" y="3.5" width="7" height="7" rx="2" fill="#7a3b1e" transform="rotate(38 16.0 7.0)"/><rect x="17.2" y="7.2" width="7" height="7" rx="2" fill="#5b8f3a" transform="rotate(38 20.7 10.7)"/><rect x="21.8" y="10.8" width="7" height="7" rx="2" fill="#7a3b1e" transform="rotate(38 25.3 14.3)"/></g></svg></div><div class="dtxt"><span class="dcourse">Cocktail</span><h4>Alloco &amp; brochettes</h4><p>Bananes plantains frites, brochettes de bœuf et poivrons grillés</p><span class="dtag">Épicé</span></div></article>
+<article class="dcard" data-cat="cocktail"><div class="dimg"><div class="steam" aria-hidden="true"><i></i><i></i><i></i></div><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><circle r="47" fill="#efe7d8"/><circle r="47" fill="none" stroke="#d6c9b2" stroke-width="1.5"/><circle r="35" fill="#fbf7ef" stroke="#e6dccb"/><circle cx="-14" cy="-10" r="7.5" fill="#c9862f" stroke="#9c5f1b" stroke-dasharray="2 2"/><circle cx="0" cy="-16" r="7.5" fill="#c9862f" stroke="#9c5f1b" stroke-dasharray="2 2"/><circle cx="12" cy="-6" r="7.5" fill="#c9862f" stroke="#9c5f1b" stroke-dasharray="2 2"/><circle cx="-8" cy="6" r="7.5" fill="#c9862f" stroke="#9c5f1b" stroke-dasharray="2 2"/><circle cx="6" cy="10" r="7.5" fill="#c9862f" stroke="#9c5f1b" stroke-dasharray="2 2"/><circle cx="-18" cy="14" r="7.5" fill="#c9862f" stroke="#9c5f1b" stroke-dasharray="2 2"/><circle cx="20" cy="18" r="9" fill="#fff" stroke="#e6dccb"/><circle cx="20" cy="18" r="7" fill="#c8261f"/><path d="M-24 -24 a10 10 0 0 1 14 -4 L-17 -17Z" fill="#9fcf4a" stroke="#5f8f2a"/></g></svg></div><div class="dtxt"><span class="dcourse">Cocktail</span><h4>Accras de poisson</h4><p>Beignets de poisson au citron vert, sauce pimentée maison</p></div></article>
+<article class="dcard" data-cat="entree"><div class="dimg"><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><circle r="47" fill="#efe7d8"/><circle r="47" fill="none" stroke="#d6c9b2" stroke-width="1.5"/><circle r="35" fill="#fbf7ef" stroke="#e6dccb"/><ellipse cx="-12" cy="-14" rx="12" ry="6" transform="rotate(30 -12 -14)" fill="#6aa84f"/><ellipse cx="14" cy="-12" rx="12" ry="6" transform="rotate(-40 14 -12)" fill="#7fbf5c"/><ellipse cx="-16" cy="12" rx="12" ry="6" transform="rotate(-30 -16 12)" fill="#5a9a40"/><ellipse cx="14" cy="14" rx="12" ry="6" transform="rotate(35 14 14)" fill="#6aa84f"/><ellipse cx="0" cy="-2" rx="12" ry="6" transform="rotate(80 0 -2)" fill="#88c765"/><g transform="translate(-6 -10) rotate(20)"><ellipse rx="9" ry="7" fill="#3d6b2c"/><ellipse rx="7.5" ry="5.6" fill="#cfe39a"/><circle cx="1.5" r="2.6" fill="#8a5a3c"/></g><g transform="translate(8 6) rotate(-30)"><ellipse rx="9" ry="7" fill="#3d6b2c"/><ellipse rx="7.5" ry="5.6" fill="#cfe39a"/><circle cx="1.5" r="2.6" fill="#8a5a3c"/></g><path d="M-14 4 a5 5 0 1 1 6 4" fill="none" stroke="#f28c6b" stroke-width="3.2" stroke-linecap="round"/><path d="M4 -16 a5 5 0 1 1 6 4" fill="none" stroke="#f28c6b" stroke-width="3.2" stroke-linecap="round"/><path d="M14 -2 a5 5 0 1 1 6 4" fill="none" stroke="#f28c6b" stroke-width="3.2" stroke-linecap="round"/><path d="M-4 14 a5 5 0 1 1 6 4" fill="none" stroke="#f28c6b" stroke-width="3.2" stroke-linecap="round"/></g></svg></div><div class="dtxt"><span class="dcourse">Entrée</span><h4>Salade avocat-crevettes</h4><p>Avocat, crevettes grillées, jeunes pousses, vinaigrette passion</p></div></article>
+<article class="dcard" data-cat="plat"><div class="dimg"><div class="steam" aria-hidden="true"><i></i><i></i><i></i></div><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><circle r="47" fill="#efe7d8"/><circle r="47" fill="none" stroke="#d6c9b2" stroke-width="1.5"/><circle r="35" fill="#fbf7ef" stroke="#e6dccb"/><ellipse cx="-14" cy="14" rx="15" ry="11" fill="#f6efd8"/><circle cx="-20.3" cy="6.1" r="1.3" fill="#e9dfbf"/><circle cx="-16.5" cy="7.1" r="1.3" fill="#e9dfbf"/><circle cx="-24.4" cy="12.0" r="1.3" fill="#e9dfbf"/><circle cx="-4.0" cy="20.0" r="1.3" fill="#e9dfbf"/><circle cx="-7.6" cy="8.4" r="1.3" fill="#e9dfbf"/><circle cx="-13.1" cy="9.5" r="1.3" fill="#e9dfbf"/><circle cx="-21.9" cy="6.1" r="1.3" fill="#e9dfbf"/><circle cx="-20.9" cy="22.5" r="1.3" fill="#e9dfbf"/><circle cx="-6.1" cy="20.1" r="1.3" fill="#e9dfbf"/><circle cx="-6.8" cy="7.9" r="1.3" fill="#e9dfbf"/><circle cx="-18.6" cy="16.5" r="1.3" fill="#e9dfbf"/><circle cx="-8.4" cy="21.1" r="1.3" fill="#e9dfbf"/><circle cx="-4.9" cy="5.7" r="1.3" fill="#e9dfbf"/><circle cx="-11.5" cy="17.4" r="1.3" fill="#e9dfbf"/><circle cx="-13.9" cy="7.6" r="1.3" fill="#e9dfbf"/><circle cx="-14.6" cy="5.8" r="1.3" fill="#e9dfbf"/><circle cx="-3.6" cy="21.3" r="1.3" fill="#e9dfbf"/><circle cx="-12.9" cy="10.0" r="1.3" fill="#e9dfbf"/><circle cx="-4.2" cy="15.4" r="1.3" fill="#e9dfbf"/><circle cx="-4.8" cy="21.0" r="1.3" fill="#e9dfbf"/><circle cx="-13.8" cy="12.3" r="1.3" fill="#e9dfbf"/><circle cx="-11.6" cy="12.6" r="1.3" fill="#e9dfbf"/><circle cx="-22.1" cy="10.1" r="1.3" fill="#e9dfbf"/><circle cx="-6.5" cy="4.9" r="1.3" fill="#e9dfbf"/><circle cx="-24.9" cy="16.5" r="1.3" fill="#e9dfbf"/><circle cx="-19.3" cy="14.7" r="1.3" fill="#e9dfbf"/><circle cx="-14.7" cy="10.9" r="1.3" fill="#e9dfbf"/><circle cx="-2.1" cy="7.9" r="1.3" fill="#e9dfbf"/><circle cx="-16.1" cy="8.1" r="1.3" fill="#e9dfbf"/><circle cx="-10.8" cy="9.5" r="1.3" fill="#e9dfbf"/><circle cx="-17.5" cy="18.9" r="1.3" fill="#e9dfbf"/><circle cx="-18.3" cy="15.2" r="1.3" fill="#e9dfbf"/><circle cx="-4.3" cy="6.0" r="1.3" fill="#e9dfbf"/><circle cx="-24.5" cy="8.6" r="1.3" fill="#e9dfbf"/><circle cx="-7.6" cy="16.3" r="1.3" fill="#e9dfbf"/><circle cx="-20.3" cy="10.6" r="1.3" fill="#e9dfbf"/><circle cx="-21.7" cy="13.2" r="1.3" fill="#e9dfbf"/><circle cx="-25.0" cy="17.9" r="1.3" fill="#e9dfbf"/><circle cx="-4.5" cy="23.1" r="1.3" fill="#e9dfbf"/><circle cx="-8.4" cy="23.2" r="1.3" fill="#e9dfbf"/><circle cx="-25.6" cy="9.8" r="1.3" fill="#e9dfbf"/><circle cx="-2.8" cy="19.5" r="1.3" fill="#e9dfbf"/><circle cx="-16.1" cy="22.9" r="1.3" fill="#e9dfbf"/><circle cx="-11.1" cy="20.4" r="1.3" fill="#e9dfbf"/><circle cx="-19.0" cy="7.8" r="1.3" fill="#e9dfbf"/><circle cx="-15.3" cy="6.7" r="1.3" fill="#e9dfbf"/><circle cx="-16.8" cy="23.2" r="1.3" fill="#e9dfbf"/><circle cx="-18.0" cy="4.2" r="1.3" fill="#e9dfbf"/><circle cx="-24.9" cy="7.4" r="1.3" fill="#e9dfbf"/><circle cx="-7.2" cy="11.3" r="1.3" fill="#e9dfbf"/><circle cx="-19.0" cy="5.9" r="1.3" fill="#e9dfbf"/><circle cx="-2.4" cy="12.5" r="1.3" fill="#e9dfbf"/><circle cx="-21.0" cy="5.2" r="1.3" fill="#e9dfbf"/><circle cx="-24.7" cy="7.4" r="1.3" fill="#e9dfbf"/><circle cx="-9.8" cy="7.0" r="1.3" fill="#e9dfbf"/><circle cx="-25.0" cy="13.8" r="1.3" fill="#e9dfbf"/><circle cx="-20.0" cy="24.0" r="1.3" fill="#e9dfbf"/><circle cx="-23.1" cy="14.6" r="1.3" fill="#e9dfbf"/><circle cx="-7.4" cy="12.2" r="1.3" fill="#e9dfbf"/><circle cx="-2.3" cy="13.6" r="1.3" fill="#e9dfbf"/><circle cx="-20.2" cy="12.2" r="1.3" fill="#e9dfbf"/><circle cx="-25.1" cy="12.4" r="1.3" fill="#e9dfbf"/><circle cx="-20.0" cy="21.8" r="1.3" fill="#e9dfbf"/><circle cx="-6.1" cy="14.0" r="1.3" fill="#e9dfbf"/><circle cx="-25.2" cy="9.1" r="1.3" fill="#e9dfbf"/><circle cx="-20.2" cy="8.2" r="1.3" fill="#e9dfbf"/><circle cx="-20.4" cy="21.4" r="1.3" fill="#e9dfbf"/><circle cx="-22.6" cy="5.0" r="1.3" fill="#e9dfbf"/><circle cx="-3.7" cy="15.3" r="1.3" fill="#e9dfbf"/><circle cx="-2.2" cy="12.1" r="1.3" fill="#e9dfbf"/><g transform="rotate(-20)"><ellipse cx="4" cy="-6" rx="22" ry="9" fill="#b5652d"/><path d="M24 -6 L34 -14 L33 2Z" fill="#9a4f1e"/><path d="M-4 -14 v16 M4 -15 v18 M12 -14 v16" stroke="#5e2a10" stroke-width="1.6"/><circle cx="-11" cy="-8" r="1.8" fill="#1b1b1b"/></g><circle cx="18" cy="14" r="5" fill="none" stroke="#d6332f" stroke-width="2"/><circle cx="24" cy="21" r="4" fill="none" stroke="#c9a3d6" stroke-width="1.6"/><path d="M8 24 q4 -6 10 -4" stroke="#2f8a3a" stroke-width="2.5" fill="none" stroke-linecap="round"/></g></svg></div><div class="dtxt"><span class="dcourse">Plat</span><h4>Poisson braisé &amp; attiéké</h4><p>Capitaine braisé au feu de bois, attiéké, oignons et tomates</p><span class="dtag">Spécialité</span></div></article>
+<article class="dcard" data-cat="plat"><div class="dimg"><div class="steam" aria-hidden="true"><i></i><i></i><i></i></div><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><circle r="44" fill="#a3502c"/><circle r="38" fill="#b85d33" stroke="#7d3519" stroke-width="2"/><circle r="31" fill="#a8442a"/><ellipse cx="-10" cy="-8" rx="8" ry="6" transform="rotate(20 -10 -8)" fill="#d08a4a" stroke="#9c5f2b"/><ellipse cx="10" cy="-10" rx="8" ry="6" transform="rotate(-30 10 -10)" fill="#d08a4a" stroke="#9c5f2b"/><ellipse cx="0" cy="10" rx="8" ry="6" transform="rotate(10 0 10)" fill="#d08a4a" stroke="#9c5f2b"/><ellipse cx="-14" cy="10" rx="8" ry="6" transform="rotate(60 -14 10)" fill="#d08a4a" stroke="#9c5f2b"/><circle cx="14" cy="8" r="3.2" fill="#e0402f"/><circle cx="-2" cy="-18" r="3.2" fill="#e0402f"/><circle cx="18" cy="-2" r="3.2" fill="#e0402f"/><path d="M-4 0 l3 -3" stroke="#3f8f3a" stroke-width="2" stroke-linecap="round"/><path d="M6 2 l3 -3" stroke="#3f8f3a" stroke-width="2" stroke-linecap="round"/><path d="M-18 -4 l3 -3" stroke="#3f8f3a" stroke-width="2" stroke-linecap="round"/><path d="M8 18 l3 -3" stroke="#3f8f3a" stroke-width="2" stroke-linecap="round"/></g></svg></div><div class="dtxt"><span class="dcourse">Plat</span><h4>Kedjenou de poulet</h4><p>Poulet mijoté à l'étouffée dans le canari, aux légumes</p><span class="dtag">Sans porc</span></div></article>
+<article class="dcard" data-cat="dessert"><div class="dimg"><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><ellipse cx="0" cy="40" rx="40" ry="6" fill="#d6c9b2"/><rect x="-32" y="14" width="64" height="26" rx="3" fill="#fbf7ef" stroke="#e6dccb"/><rect x="-23" y="-8" width="46" height="22" rx="3" fill="#fbf7ef" stroke="#e6dccb"/><rect x="-14" y="-28" width="28" height="20" rx="3" fill="#fbf7ef" stroke="#e6dccb"/><path d="M-32 22 q8 5 16 0 t16 0 t16 0 t16 0 M-23 -1 q6 4 11.5 0 t11.5 0 t11.5 0 t11.5 0" stroke="#0b1533" stroke-width="1.4" fill="none"/><g transform="translate(-6 -30)"><circle r="5" fill="#e0303f"/><circle r="1.6" fill="#ffd36b"/></g><g transform="translate(18 12)"><circle r="5" fill="#e0303f"/><circle r="1.6" fill="#ffd36b"/></g><g transform="translate(-26 36)"><circle r="5" fill="#e0303f"/><circle r="1.6" fill="#ffd36b"/></g><path d="M-4 -30 l-6 -8 M2 -31 l5 -9" stroke="#3f8f3a" stroke-width="1.6"/></g></svg></div><div class="dtxt"><span class="dcourse">Dessert</span><h4>Gâteau des mariés</h4><p>Trois étages, vanille et coco, fleurs d'hibiscus</p></div></article>
+<article class="dcard" data-cat="dessert"><div class="dimg"><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><circle r="47" fill="#efe7d8"/><circle r="47" fill="none" stroke="#d6c9b2" stroke-width="1.5"/><circle r="35" fill="#fbf7ef" stroke="#e6dccb"/><rect x="-20" y="-10" width="8" height="8" rx="1.5" fill="#f5a524" transform="rotate(12 -16 -6)"/><rect x="-8" y="-20" width="8" height="8" rx="1.5" fill="#f5a524" transform="rotate(-20 -4 -16)"/><rect x="6" y="-12" width="8" height="8" rx="1.5" fill="#f5a524" transform="rotate(30 10 -8)"/><rect x="-14" y="6" width="8" height="8" rx="1.5" fill="#f5a524" transform="rotate(-10 -10 10)"/><path d="M8 4 l9 0 l-4.5 -9Z" fill="#f7dc5a" stroke="#d6b322" stroke-width=".8"/><path d="M-4 12 l9 0 l-4.5 -9Z" fill="#f7dc5a" stroke="#d6b322" stroke-width=".8"/><path d="M14 18 l9 0 l-4.5 -9Z" fill="#f7dc5a" stroke="#d6b322" stroke-width=".8"/><circle cx="18" cy="-14" r="8" fill="#5b2a6e"/><circle cx="18" cy="-14" r="6" fill="#f2c94c"/><circle cx="21.0" cy="-14.0" r=".9" fill="#2a1a10"/><circle cx="19.5" cy="-11.4" r=".9" fill="#2a1a10"/><circle cx="16.5" cy="-11.4" r=".9" fill="#2a1a10"/><circle cx="15.0" cy="-14.0" r=".9" fill="#2a1a10"/><circle cx="16.5" cy="-16.6" r=".9" fill="#2a1a10"/><circle cx="19.5" cy="-16.6" r=".9" fill="#2a1a10"/><ellipse cx="-20" cy="16" rx="6" ry="3" fill="#4caf50" transform="rotate(-30 -20 16)"/><ellipse cx="-14" cy="20" rx="5" ry="2.6" fill="#66bb6a" transform="rotate(20 -14 20)"/></g></svg></div><div class="dtxt"><span class="dcourse">Dessert</span><h4>Fruits tropicaux</h4><p>Mangue, ananas, fruit de la passion et menthe fraîche</p><span class="dtag">Végétarien</span></div></article>
+<article class="dcard" data-cat="boisson"><div class="dimg"><svg class="dish" viewBox="-50 -50 100 100" aria-hidden="true"><g class="plate"><ellipse cx="0" cy="34" rx="44" ry="6" fill="#d6c9b2"/><path d="M-33 -18 L-31 26 H-17 L-15 -18Z" fill="rgba(255,255,255,.35)" stroke="#d6c9b2"/><path d="M-32.3 -8 L-31 26 H-17 L-15.7 -8Z" fill="#8e1330"/><path d="M-9 -18 L-7 26 H7 L9 -18Z" fill="rgba(255,255,255,.35)" stroke="#d6c9b2"/><path d="M-8.3 -4 L-7 26 H7 L8.3 -4Z" fill="#f1d77a"/><path d="M-2 -26 L6 -40" stroke="#e0303f" stroke-width="2"/><circle cx="-24" cy="-14" r="0" /><g transform="translate(26 8)"><circle r="16" fill="#7a4a2b"/><circle r="12" fill="#fbf7ef"/><path d="M2 -6 L14 -34" stroke="#e0303f" stroke-width="2.4"/><path d="M-6 -12 q-6 -10 2 -16 q4 8 -2 16Z" fill="#ff7a63"/></g><circle cx="-30" cy="-22" r="4" fill="#9fcf4a" stroke="#5f8f2a"/></g></svg></div><div class="dtxt"><span class="dcourse">Boissons</span><h4>Bar tropical</h4><p>Bissap, gnamankoudji (jus de gingembre), eau de coco, champagne</p><span class="dtag">Sans alcool possible</span></div></article>
+          </div>
+          <p class="sk-note">Illustrations provisoires · les photos des plats viendront après la dégustation chez le traiteur</p>
+        </div></section>
+
+        <section id="lieu"><svg class="leaf sm" data-par="0.3" style="right:-20px;top:30px"><use href="#leaf"/></svg><div class="in">
+          <span class="lbl rv">Le lieu</span>
+          <h3 class="h split">Grand-Bassam, <em>entre mer et lagune</em></h3>
+          <p class="lieu-intro rv">Ancienne capitale de la Côte d'Ivoire, Grand-Bassam garde son Quartier France, inscrit au patrimoine mondial de l'UNESCO en 2012, posé entre l'océan et la lagune Ouladine. En attendant les vraies photos du lieu, voici quelques esquisses.</p>
+          <div class="gal">
+            <figure class="gcard big rv"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-plage"/></svg><figcaption><b>La plage</b><span>La cérémonie, face au golfe de Guinée</span></figcaption></figure>
+            <figure class="gcard rv" style="--i:1"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-maison"/></svg><figcaption><b>Le Quartier France</b><span>Façades coloniales et balcons, pour les photos</span></figcaption></figure>
+            <figure class="gcard rv" style="--i:2"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-lagune"/></svg><figcaption><b>La lagune Ouladine</b><span>Mangroves et pirogues de pêcheurs</span></figcaption></figure>
+            <figure class="gcard rv" style="--i:1"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-phare"/></svg><figcaption><b>Le phare</b><span>Repère de la côte depuis plus d'un siècle</span></figcaption></figure>
+            <figure class="gcard rv" style="--i:2"><svg class="sk" viewBox="0 0 300 190" aria-hidden="true"><use href="#sk-paillote"/></svg><figcaption><b>La paillote</b><span>Dîner et soirée dansante</span></figcaption></figure>
+          </div>
+          <p class="sk-note rv">Esquisses provisoires · elles seront remplacées par les photos du lieu</p>
+        </div></section>
+
+        <div class="marq alt" aria-hidden="true"><div class="mq-track"><span>Pieds dans le sable <b>✦</b> Rouge &amp; bleu nuit <b>✦</b> Golfe de Guinée <b>✦</b> On danse jusqu'au bout de la nuit <b>✦</b> </span><span>Pieds dans le sable <b>✦</b> Rouge &amp; bleu nuit <b>✦</b> Golfe de Guinée <b>✦</b> On danse jusqu'au bout de la nuit <b>✦</b> </span><span>Pieds dans le sable <b>✦</b> Rouge &amp; bleu nuit <b>✦</b> Golfe de Guinée <b>✦</b> On danse jusqu'au bout de la nuit <b>✦</b> </span><span>Pieds dans le sable <b>✦</b> Rouge &amp; bleu nuit <b>✦</b> Golfe de Guinée <b>✦</b> On danse jusqu'au bout de la nuit <b>✦</b> </span></div></div>
+        <section id="infos"><svg class="leaf" data-par="-0.3" style="right:-40px;top:30px"><use href="#leaf"/></svg><div class="in">
+          <span class="lbl rv">Infos pratiques</span>
+          <h3 class="h split">Avant de <em>venir</em></h3>
+          <div class="cards">
+            <div class="card rv" style="--i:1"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 4 L22 10 L16 28 L10 10Z"/><path d="M10 10 H22"/></svg><h4>Tenue</h4><p>Rouge et bleu nuit, tissus légers. Chaussures plates conseillées : la cérémonie se passe sur le sable.</p><div class="sw"><i style="background:#e0303f"></i><i style="background:#0b1533"></i><i style="background:#f4e7d0"></i></div></div>
+            <div class="card rv" style="--i:2"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 29 C 16 29 6 19 6 12 a10 10 0 0 1 20 0 C 26 19 16 29 16 29Z"/><circle cx="16" cy="12" r="3.5"/></svg><h4>Venir &amp; dormir</h4><p>Grand-Bassam est à 40 min d'Abidjan et à 30 min de l'aéroport Félix-Houphouët-Boigny. Une liste d'hôtels en bord de plage sera partagée.</p></div>
+            <div class="card rv" style="--i:3"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="12" width="22" height="16" rx="2"/><path d="M3 12 H29 V8 H3Z M16 8 V28 M16 8 C 12 2 8 4 10 8 M16 8 C 20 2 24 4 22 8"/></svg><h4>Cadeaux</h4><p>Une urne sera à la réception. Contribution possible par Orange Money ou Wave.</p></div>
+          </div>
+        </div></section>
+
+        <section id="mer" class="mer"><div class="in">
+          <span class="lbl rv">La mer vous attend</span>
+          <h3 class="h split">Touchez <em>l'eau</em></h3>
+        </div>
+          <div class="mer-grid" id="mergrid" aria-hidden="true"></div>
+          <p class="mer-hint">Touchez un point pour faire une vague</p>
+        </section>
+
+        <section id="rsvp"><div class="lanterns" id="lanterns" aria-hidden="true"></div><svg class="leaf" data-par="0.25" style="left:-40px;top:60px"><use href="#leaf"/></svg><svg class="leaf sm" data-par="-0.25" style="right:-20px;bottom:40px"><use href="#leaf"/></svg><div class="in" id="rsvp-in"><svg class="flight" id="flight" aria-hidden="true"><path id="fpath" d=""/></svg><div class="plane" id="plane" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12 L22 3 L15 21 L11 13 Z" fill="#f4e7d0"/><path d="M11 13 L22 3" stroke="#0b1533" stroke-width="1"/></svg></div>
+          <span class="lbl rv">Confirmation</span>
+          <h3 class="h split">Serez-vous <em>des nôtres ?</em></h3>
+
+          <form class="form" id="step1" novalidate>
+            <p class="hint">Entrez le code à 6 caractères reçu par WhatsApp.</p>
+            <label for="code">Votre code d'invitation
+              <input class="inp code" id="code" name="code" maxlength="7" autocomplete="off" placeholder="K7M4PQ">
+            </label>
+            <p class="err" id="err" hidden></p>
+            <button class="s-btn" type="submit">Continuer</button>
+            <p class="hint">Codes d'essai : <b>K7M4PQ</b> (Famille Ilunga, 4 places) · <b>TR9X2D</b> (Esther Kabila, 1 place)</p>
+          </form>
+
+          <form class="form" id="step2" hidden novalidate>
+            <p class="hint">Bonjour,</p>
+            <p class="guest" id="g-name"></p>
+            <p class="hint" id="g-seats"></p>
+            <div class="choice" role="radiogroup" aria-label="Présence">
+              <div><input type="radio" name="att" id="att-y" value="oui" checked><label for="att-y">Je serai là</label></div>
+              <div><input type="radio" name="att" id="att-n" value="non"><label for="att-n">Je ne pourrai pas venir</label></div>
+            </div>
+            <label for="nb" id="nb-wrap">Nombre de personnes
+              <select class="inp" id="nb"></select>
+            </label>
+            <label for="diet" id="diet-wrap">Régime alimentaire
+              <select class="inp" id="diet"><option>Aucune restriction</option><option>Végétarien</option><option>Sans porc</option><option>Sans poisson ni fruits de mer</option><option>Allergie (précisez dans le mot)</option></select>
+            </label>
+            <label for="msg">Un mot pour les mariés (facultatif)
+              <textarea class="inp" id="msg" rows="3" placeholder="Félicitations !"></textarea>
+            </label>
+            <button class="s-btn" type="submit">Envoyer ma réponse</button>
+            <button class="s-btn ghost" type="button" id="back">Ce n'est pas mon code</button>
+          </form>
+
+          <div class="form done" id="step3" hidden>
+            <p class="guest" id="d-title"></p>
+            <div class="tcard" id="tcard">
+              <small>Votre table</small>
+              <span class="tname" id="t-name"></span>
+              <span class="tsub" id="t-sub"></span>
+            </div>
+            <svg class="map" id="map" viewBox="0 0 320 210" role="img" aria-label="Plan de la salle"></svg>
+            <p class="hint" id="d-text"></p>
+            <button class="s-btn ghost" type="button" id="edit">Modifier ma réponse</button>
+          </div>
+        </div></section>
+
+        <footer class="foot"><div class="foot-wave"><svg class="wave w1" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 Q 75 4 150 30 T 300 30 T 450 30 T 600 30 V60 H0Z"/></svg><svg class="wave w3" viewBox="0 0 600 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 Q 75 14 150 30 T 300 30 T 450 30 T 600 30 V60 H0Z"/></svg></div><svg class="rings" id="rings" viewBox="0 0 120 70" aria-hidden="true"><circle cx="46" cy="40" r="22"/><circle cx="74" cy="40" r="22"/><path class="gem" d="M46 12 L52 6 L58 12 L52 18 Z" transform="translate(-6 -2)"/></svg><svg class="pen" viewBox="0 0 320 90" aria-hidden="true"><text x="160" y="64" text-anchor="middle">À très vite</text></svg>Une question ? Écrivez à Gaël sur WhatsApp : +225 07 00 00 00 00<br><b>#GaelEtClarisse2027</b></footer>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ================= PLAN ================= -->
+  <section class="plan">
+    <div><div class="eyebrow">Le plan, mis à jour</div><h2>Ce qui sera construit</h2></div>
+
+    <div class="cols">
+      <div class="box">
+        <h3>1. Le site public (invités)</h3>
+        <ul>
+          <li>Accueil animé : ciel étoilé, soleil couchant, vagues, palmiers, pétales d'hibiscus</li>
+          <li>Prénoms qui apparaissent lettre par lettre, compte à rebours en direct</li>
+          <li>Mot d'invitation des familles, avec la bouteille à la mer</li>
+          <li>« Notre histoire » en chapitres qui défilent à l'horizontale</li>
+          <li>Programme en frise qui se dessine au défilement</li>
+          <li>Le menu, plat par plat, avec une image de chaque plat (illustrations, puis photos du traiteur)</li>
+          <li>Infos pratiques : tenue rouge et bleu nuit, accès, hôtels, cadeaux</li>
+          <li>Confirmation par code, puis découverte de sa table sur le plan de la salle</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>2. L'espace mariés (privé)</h3>
+        <ul>
+          <li>Import de la liste d'invités (Excel ou Google Sheets)</li>
+          <li>Un code unique par foyer, avec son nombre de places</li>
+          <li><b>Plan de table</b> : créer les tables (Hibiscus, Cocotier, Corail…), y placer chaque foyer, voir les places restantes</li>
+          <li>Bouton « Envoyer sur WhatsApp » pour chaque invité</li>
+          <li>Suivi en direct des réponses et relance de ceux qui n'ont pas répondu</li>
+          <li>Menu modifiable : plats, descriptions, photos</li>
+          <li>Export pour le traiteur (nombre de couverts et régimes alimentaires) et une liste d'accueil triée par table</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="box">
+        <h3>Le parcours de l'invité</h3>
+        <ol class="flow">
+          <li><div><strong>Il reçoit le message WhatsApp</strong><span class="small">Avec son code et un lien direct.</span></div></li>
+          <li><div><strong>Il ouvre le site</strong><span class="small">Le code est déjà saisi, il voit son nom et ses places.</span></div></li>
+          <li><div><strong>Il confirme</strong><span class="small">Oui ou non, nombre de personnes, un mot pour vous.</span></div></li>
+          <li><div><strong>Il découvre sa table</strong><span class="small">Carte animée avec le nom de la table et sa position sur le plan.</span></div></li>
+          <li><div><strong>Le jour J</strong><span class="small">Il retrouve sa table en revenant sur le site avec son code.</span></div></li>
+        </ol>
+        <p class="small" style="margin-top:8px">Si une table n'est pas encore attribuée, l'invité voit « Votre table vous sera dévoilée bientôt » et peut revenir plus tard.</p>
+      </div>
+      <div class="box">
+        <h3>Exemple de message envoyé</h3>
+        <div class="wa">Bonjour Famille Ilunga 🌺
+Gaël et Clarisse ont la joie de vous inviter à leur mariage sous les tropiques, le samedi 13 février 2027 à Grand-Bassam, au bord de la mer.
+
+Votre code : K7M4PQ (4 places)
+Confirmez et découvrez votre table :
+gael-et-clarisse.com/rsvp?c=K7M4PQ
+
+Merci de répondre avant le 13 janvier.</div>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Animations : ce qui est prévu</h3>
+      <div class="tbl"><table>
+        <thead><tr><th>Où</th><th>Animation</th></tr></thead>
+        <tbody>
+          <tr><td>Accueil</td><td>Étoiles qui scintillent, soleil qui flotte sur l'horizon, reflets sur l'eau, trois couches de vagues, palmiers qui se balancent, pétales qui tombent, prénoms lettre par lettre</td></tr>
+          <tr><td>Défilement</td><td>Le soleil se couche et les palmiers s'écartent en quittant l'accueil, barre de progression rouge, titres qui montent mot par mot, feuilles tropicales en parallaxe, « Notre histoire » qui défile à l'horizontale, frise du programme qui se trace, pirogue qui traverse l'écran, cartes qui se dévoilent</td></tr>
+          <tr><td>Chargement</td><td>Monogramme G &amp; C tracé à la plume, vague rouge qui se remplit avec le pourcentage, puis ouverture en cercle comme un soleil qui s'élargit</td></tr>
+          <tr><td>Esquisses</td><td>Dessins du lieu (plage, Quartier France, lagune, phare, paillote) qui se tracent à l'encre au défilement, avec touches d'aquarelle rouge. Remplacés ensuite par vos photos</td></tr>
+          <tr><td>Encore plus</td><td>Rayons du soleil qui tournent, étoiles filantes, lucioles, texte machine à écrire, bandeaux défilants qui accélèrent et penchent selon la vitesse du défilement, chiffres du compte à rebours qui basculent, cartes inclinées en 3D sous la souris, boutons aimantés, traînée de pétales derrière le curseur, ondes au toucher sur téléphone, lanternes qui s'envolent derrière la confirmation, « À très vite » écrit à la plume en bas de page</td></tr>
+          <tr><td>Anime.js</td><td>Grille de points en vague derrière le monogramme du chargement, bouton « Ouvrir l'invitation » à ressort, prénoms qui rebondissent depuis le centre (et explosent au toucher), titres en vague élastique, compte à rebours qui compte jusqu'au nombre de jours, galerie en cascade, tables du plan qui apparaissent une à une à partir de celle de l'invité</td></tr>
+          <tr><td>Anime.js (suite)</td><td>Emblème qui se transforme (soleil, hibiscus, cœur, alliance), horaires du programme qui défilent comme une horloge, mer de points interactive où chaque toucher lance une onde, avion en papier qui emporte la réponse le long d'une trajectoire tracée, alliances dessinées au trait puis diamant qui scintille</td></tr>
+          <tr><td>Vie</td><td>Mouettes qui traversent le ciel, bruit des vagues généré en direct (bouton, aucun fichier à télécharger)</td></tr>
+          <tr><td>Interactions</td><td>Boutons avec reflet, cartes qui se soulèvent, code erroné qui secoue le champ</td></tr>
+          <tr><td>Confirmation</td><td>Pluie de pétales, carte de table qui se retourne, table qui pulse sur le plan</td></tr>
+          <tr><td>Version finale</td><td>Bruit des vagues activé à l'ouverture de l'invitation, coupable à tout moment. Les animations restent légères pour les téléphones d'entrée de gamme, et se coupent pour les personnes qui ont réduit les animations sur leur téléphone</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="cols">
+      <div class="box">
+        <h3>Choix techniques</h3>
+        <ul>
+          <li>Site : Next.js, rapide sur mobile même en 3G</li>
+          <li>Base de données : Supabase (invités, codes, réponses, tables)</li>
+          <li>Hébergement : Vercel, gratuit pour ce volume</li>
+          <li>Envoi WhatsApp semi-automatique depuis votre numéro, gratuit</li>
+          <li>5 essais de code maximum, espace mariés protégé par mot de passe</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h3>Étapes</h3>
+        <ol>
+          <li>Validation de cette maquette et envoi de vos contenus</li>
+          <li>Site public avec animations, textes et photos</li>
+          <li>Confirmation par code et espace mariés</li>
+          <li>Plan de table et affichage de la table à l'invité</li>
+          <li>Test avec 5 à 10 proches, corrections</li>
+          <li>Mise en ligne et envoi des invitations</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="box">
+      <h3>Ce qu'il me manque</h3>
+      <ul class="ask">
+        <li>Le lieu exact à Grand-Bassam (hôtel, plage)</li>
+        <li>Les horaires et les lieux de chaque moment</li>
+        <li>Les noms des deux familles à citer</li>
+        <li>Votre texte d'invitation, ou validation du mien</li>
+        <li>Les noms de vos tables et le nombre de places par table</li>
+        <li>Le nombre d'invités et la date limite de réponse</li>
+        <li>2 à 6 photos de vous</li>
+        <li>Des photos du lieu (plage, salle, paillote) pour remplacer les esquisses</li>
+        <li>Le nom de domaine souhaité</li>
+        <li>Le numéro WhatsApp de contact</li>
+        <li>Vos infos cadeaux ou Mobile Money</li>
+        <li>Le menu du traiteur et les photos des plats</li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.2/anime.min.js"></script>
+<script>
+(function(){
+  var A=window.anime||null;
+  var site=document.getElementById('site'), frame=document.getElementById('frame'), vp=document.getElementById('vp');
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches, motion=!reduce;
+  function press(g,b){g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')})}
+  var devs=document.getElementById('devs'), mt=document.getElementById('mot-tog');
+  devs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;frame.classList.toggle('phone',b.dataset.dev==='phone');press(devs,b);setTimeout(size,450)});
+  mt.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;motion=b.dataset.m==='on';site.classList.toggle('still',!motion);press(mt,b);if(!motion)clearPetals()});
+  if(reduce){press(mt,mt.querySelector('[data-m="off"]'));site.classList.add('still')}
+
+  site.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;e.preventDefault();var t=site.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:motion?'smooth':'auto',block:'start'})});
+
+  // Prénoms lettre par lettre
+  var k=0;document.querySelectorAll('#names .w').forEach(function(w){var t=w.textContent;w.textContent='';t.split('').forEach(function(c){var s=document.createElement('span');s.className='l';s.style.setProperty('--i',k++);s.textContent=c;w.appendChild(s)})});
+
+  // Étoiles
+  var st=document.getElementById('stars');
+  for(var i=0;i<70;i++){var s=document.createElement('i');s.style.left=(Math.random()*100)+'%';s.style.top=(Math.random()*55)+'%';s.style.setProperty('--d',(2+Math.random()*4)+'s');s.style.setProperty('--t',(-Math.random()*5)+'s');if(Math.random()<.15){s.style.width=s.style.height='3px'}st.appendChild(s)}
+
+  // Compte à rebours
+  var counting=false;var target=new Date('2027-02-13T16:30:00Z').getTime(), prev={};
+  function set(id,v){var el=document.getElementById(id);if(prev[id]!==v){el.textContent=v;if(prev[id]!==undefined&&motion){el.classList.remove('tick');void el.offsetWidth;el.classList.add('tick')}prev[id]=v}}
+  function tick(){var d=Math.max(0,target-Date.now());if(!counting)set('cd-d',String(Math.floor(d/864e5)));set('cd-h',String(Math.floor(d/36e5)%24).padStart(2,'0'));set('cd-m',String(Math.floor(d/6e4)%60).padStart(2,'0'));set('cd-s',String(Math.floor(d/1e3)%60).padStart(2,'0'))}
+  tick();setInterval(tick,1000);
+
+  // Pétales d'hibiscus (canvas)
+  var cv=document.getElementById('petals'),cx=cv.getContext('2d'),hero=document.getElementById('hero'),W=0,H=0,P=[],dpr=Math.min(2,window.devicePixelRatio||1),visible=true;
+  function size(){var r=hero.getBoundingClientRect();W=r.width;H=r.height;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+  function mk(top){return{x:Math.random()*W,y:top?Math.random()*H:-20,s:5+Math.random()*7,vy:.35+Math.random()*.6,vx:-.3+Math.random()*.6,a:Math.random()*6.28,va:-.02+Math.random()*.04,ph:Math.random()*6.28,c:Math.random()<.75?'#e0303f':'#ff7a63'}}
+  function clearPetals(){cx.clearRect(0,0,W,H)}
+  size();for(var j=0;j<22;j++)P.push(mk(true));
+  if('ResizeObserver' in window)new ResizeObserver(size).observe(hero);
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting},{root:vp}).observe(hero);
+  function frameLoop(){requestAnimationFrame(frameLoop);if(!motion||!visible)return;cx.clearRect(0,0,W,H);
+    P.forEach(function(p,ix){p.ph+=.02;p.x+=p.vx+Math.sin(p.ph)*.5;p.y+=p.vy;p.a+=p.va;if(p.y>H+20)P[ix]=mk(false);
+      cx.save();cx.translate(p.x,p.y);cx.rotate(p.a);cx.globalAlpha=.85;cx.fillStyle=p.c;cx.beginPath();cx.ellipse(0,0,p.s,p.s*.55,0,0,6.28);cx.fill();cx.globalAlpha=.35;cx.fillStyle='#fff';cx.beginPath();cx.ellipse(-p.s*.3,0,p.s*.35,p.s*.15,0,0,6.28);cx.fill();cx.restore()})}
+  frameLoop();
+
+  // Révélations au défilement : l'élément est visible au repos, l'animation se joue quand il entre
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&motion){e.target.classList.add('on');io.unobserve(e.target)}})},{root:vp,threshold:.2});
+    site.querySelectorAll('.rv').forEach(function(el){io.observe(el)})}
+
+
+  // ---- v3 : moteur d'animations au défilement ----
+  // Titres : découpe mot par mot
+  site.querySelectorAll('.split').forEach(function(h){var k=0;(function walk(n){Array.prototype.slice.call(n.childNodes).forEach(function(c){
+    if(c.nodeType===3){var parts=c.textContent.split(/(\s+)/),f=document.createDocumentFragment();parts.forEach(function(p){if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(p))}else{var w=document.createElement('span');w.className='wd';w.style.setProperty('--k',k++);w.textContent=p;f.appendChild(w)}});n.replaceChild(f,c)}
+    else if(c.nodeType===1)walk(c)})})(h)});
+  site.querySelectorAll('.tl').forEach(function(t){t.querySelectorAll('.ev').forEach(function(e,i){e.style.setProperty('--e',i)})});
+  if('IntersectionObserver' in window){var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&motion){e.target.classList.add('on');io2.unobserve(e.target);if(window.animWords)animWords(e.target)}})},{root:vp,threshold:.3});
+    site.querySelectorAll('.split').forEach(function(el){io2.observe(el)})}
+
+  var nav=document.getElementById('snav'),pbar=document.getElementById('pbar'),htxt=document.getElementById('htxt'),sunw=document.getElementById('sunw'),
+      pl=document.getElementById('palmL'),pr=document.getElementById('palmR'),stars=document.getElementById('stars'),
+      hs=document.getElementById('histoire'),hss=document.getElementById('hss'),track=document.getElementById('track'),dots=hs.querySelectorAll('.hs-dots i'),
+      prog=document.getElementById('prog'),boat=document.getElementById('boat'),leaves=site.querySelectorAll('[data-par]'),dist=0,ticking=false;
+  function layout(){var vh=vp.clientHeight,nh=nav.offsetHeight;site.style.setProperty('--vph',vh+'px');site.style.setProperty('--navh',nh+'px');
+    var pinned=motion&&!reduce;dist=Math.max(0,track.scrollWidth-hss.clientWidth);hs.style.height=pinned?((vh-nh)+dist)+'px':'';onScroll()}
+  function clamp(x){return x<0?0:x>1?1:x}
+  function onScroll(){ticking=false;var st=vp.scrollTop,vh=vp.clientHeight,max=vp.scrollHeight-vh;
+    pbar.style.transform='scaleX('+(max>0?st/max:0)+')';
+    var els=[htxt,sunw,pl,pr,stars,track,boat].concat(Array.prototype.slice.call(leaves));
+    if(!motion){els.forEach(function(e){e.style.transform='';e.style.opacity=''});return}
+    var p=clamp(st/hero.offsetHeight);
+    htxt.style.transform='translateY('+(-p*90)+'px) scale('+(1-p*.08)+')';htxt.style.opacity=String(1-p*1.15);
+    sunw.style.transform='translateY('+(p*150)+'px) scale('+(1+p*.35)+')';
+    pl.style.transform='translateX('+(-p*90)+'px) rotate('+(-p*10)+'deg)';
+    pr.style.transform='translateX('+(p*90)+'px) scaleX(-1) rotate('+(-p*10)+'deg)';
+    stars.style.transform='translateY('+(p*60)+'px)';
+    var vr=vp.getBoundingClientRect();
+    leaves.forEach(function(l){var r=l.parentNode.getBoundingClientRect(),d=(r.top+r.height/2)-(vr.top+vh/2);l.style.transform='translateY('+(d*parseFloat(l.dataset.par))+'px) rotate('+(d*.03)+'deg)'});
+    var hp=dist?clamp((st-hs.offsetTop+nav.offsetHeight)/dist):0;track.style.transform='translateX('+(-hp*dist)+'px)';
+    var ai=Math.round(hp*(dots.length-1));dots.forEach(function(d,i){d.classList.toggle('act',i===ai)});
+    var r2=prog.getBoundingClientRect(),t=clamp((vr.bottom-r2.top)/(r2.height+vh));boat.style.transform='translateX('+(t*(r2.width+140)-130)+'px)';
+  }
+  vp.addEventListener('scroll',function(){if(!ticking){ticking=true;requestAnimationFrame(onScroll)}},{passive:true});
+  if('ResizeObserver' in window)new ResizeObserver(layout).observe(vp);
+  devs.addEventListener('click',function(){setTimeout(layout,450)});
+  mt.addEventListener('click',function(){setTimeout(layout,0)});
+  layout();
+
+
+  // ---- v4 : esquisses qui se dessinent ----
+  if('IntersectionObserver' in window){var io3=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting&&motion){e.target.classList.add('on');io3.unobserve(e.target)}})},{root:vp,rootMargin:'0px 0px 10% 0px',threshold:.01});
+    site.querySelectorAll('.sk').forEach(function(el){io3.observe(el)})}
+
+  // ---- Loader ----
+  var loader=document.getElementById('loader'),ldp=document.getElementById('ldp'),ldw=document.getElementById('ldw'),run=0;
+  function restartNames(){site.querySelectorAll('.names .l').forEach(function(l){l.style.animation='none';void l.offsetWidth;l.style.animation=''})}
+  function playLoader(){var id=++run;gate.hidden=true;document.querySelector('.ld-pct').hidden=false;if(A&&motion){if(!gridAnim)startGrid();else gridAnim.play()}vp.scrollTop=0;loader.hidden=false;loader.classList.remove('out','go');site.classList.add('loading');site.classList.remove('reveal');restartNames();ldp.textContent='0';ldw.style.strokeDashoffset='1';
+    if(!motion){ldp.textContent='100';ldw.style.strokeDashoffset='0';showGate(id);return}
+    void loader.offsetWidth;loader.classList.add('go');var t0=performance.now(),D=2300;
+    (function step(now){if(id!==run)return;var k=Math.min(1,(now-t0)/D),e=1-Math.pow(1-k,3);ldp.textContent=Math.round(e*100);ldw.style.strokeDashoffset=String(1-e);
+      if(k<1)return requestAnimationFrame(step);
+      showGate(id)})(t0)}
+  function openSite(withSound){var id=run;wantSound=withSound;setSound(withSound);ldtap.hidden=true;loader.classList.add('out');site.classList.remove('loading');site.classList.add('reveal');typeKick();if(window.onOpen)onOpen();
+    setTimeout(function(){if(id===run){loader.hidden=true;if(gridAnim)gridAnim.pause()}},1050)}
+  var gate=document.getElementById('ldenter'),gridAnim=null;
+  function showGate(id){if(id!==run)return;gate.hidden=false;document.querySelector('.ld-pct').hidden=true;
+    if(A&&motion)A({targets:gate.children,scale:[.6,1],opacity:[0,1],translateY:[20,0],delay:A.stagger(140),easing:'spring(1, 80, 10, 0)'})}
+  document.getElementById('ldopen').addEventListener('click',function(e){e.stopPropagation();openSite(wantSound)});
+
+  var started=false;function start(){if(started)return;started=true;playLoader()}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(start);setTimeout(start,1200);
+  document.getElementById('replay').addEventListener('click',playLoader);
+
+  // ---- Bruit des vagues (généré, sans fichier), activé par défaut ----
+  var snd=document.getElementById('snd'),ac=null,master=null,soundOn=false,wantSound=true;
+  function setSound(on){
+    try{
+      if(!ac){var AC=window.AudioContext||window.webkitAudioContext;ac=new AC();var len=ac.sampleRate*4,buf=ac.createBuffer(1,len,ac.sampleRate),d=buf.getChannelData(0),last=0;
+        for(var i=0;i<len;i++){var w=Math.random()*2-1;last=(last+.02*w)/1.02;d[i]=last*3.5}
+        var src=ac.createBufferSource();src.buffer=buf;src.loop=true;var lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=650;
+        var swell=ac.createGain();swell.gain.value=.55;var lfo=ac.createOscillator();lfo.frequency.value=.11;var lg=ac.createGain();lg.gain.value=.45;lfo.connect(lg);lg.connect(swell.gain);
+        master=ac.createGain();master.gain.value=0;src.connect(lp);lp.connect(swell);swell.connect(master);master.connect(ac.destination);src.start();lfo.start()}
+      ac.resume();master.gain.setTargetAtTime(on?.5:0,ac.currentTime,.8);soundOn=on;snd.setAttribute('aria-pressed',on?'true':'false');if(window.updLd)updLd(on)
+    }catch(e){snd.title='Le son n\'est pas disponible sur cet appareil'}
+  }
+  snd.addEventListener('click',function(e){e.stopPropagation();wantSound=!soundOn;setSound(!soundOn)});
+  // Les navigateurs exigent un geste : le son démarre au premier toucher ou clic si l'invité n'a pas choisi « sans le son »
+  function wake(){if(!wantSound)return;if(!ac||!soundOn)setSound(true);else if(ac.state!=='running')ac.resume();setTimeout(checkTap,150)}
+  document.addEventListener('pointerdown',wake,true);document.addEventListener('keydown',wake,true);
+  var ldsound=document.getElementById('ldsound'),ldtap=document.getElementById('ldtap');
+  window.updLd=function(on){ldsound.setAttribute('aria-pressed',on?'true':'false');document.getElementById('ldsoundtxt').textContent=on?'Vagues activées':'Son coupé'};
+  function checkTap(){ldtap.hidden=!(wantSound&&(!ac||ac.state!=='running'))}
+  ldsound.addEventListener('click',function(e){e.stopPropagation();wantSound=!wantSound;setSound(wantSound);setTimeout(checkTap,150)});
+  // Tentative de lecture dès le chargement : acceptée par certains navigateurs, sinon le premier toucher lance la mer
+  setSound(true);setTimeout(checkTap,400);
+  snd.setAttribute('aria-pressed','true');
+
+  // ---- v5 ----
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  var flies=document.getElementById('flies');for(var f=0;f<16;f++){var fi=document.createElement('i');fi.style.cssText='--b:'+rnd(60,200)+'px;--l:'+rnd(2,98)+'%;--d:'+rnd(5,10)+'s;--t:'+(-rnd(0,10))+'s;--dx:'+rnd(-30,30)+'px';flies.appendChild(fi)}
+  var lan=document.getElementById('lanterns');for(var q=0;q<10;q++){var li=document.createElement('i');li.style.cssText='--l:'+rnd(3,95)+'%;--s:'+rnd(.6,1.4)+';--d:'+rnd(16,28)+'s;--t:'+(-rnd(0,28))+'s';lan.appendChild(li)}
+  if(typeof io3!=='undefined')site.querySelectorAll('.pen').forEach(function(el){io3.observe(el)});
+
+  // Machine à écrire
+  var kick=document.getElementById('kick'),kickTxt=kick.textContent,kt=null;
+  function typeKick(){clearInterval(kt);if(!motion){kick.textContent=kickTxt;return}var i=0;kick.textContent='';kick.classList.add('typing');
+    kt=setInterval(function(){i++;kick.textContent=kickTxt.slice(0,i);if(i>=kickTxt.length){clearInterval(kt);setTimeout(function(){kick.classList.remove('typing')},1400)}},45)}
+
+  // Bandeaux défilants liés à la vitesse du défilement
+  var mqs=Array.prototype.map.call(site.querySelectorAll('.marq'),function(m,i){return{el:m.querySelector('.mq-track'),x:0,dir:i%2?1:-1}}),lastSt=vp.scrollTop,vel=0,sign=1;
+  (function mqLoop(){requestAnimationFrame(mqLoop);var st=vp.scrollTop,dv=st-lastSt;lastSt=st;if(dv)sign=dv>0?1:-1;vel=vel*.88+dv*.12;
+    mqs.forEach(function(m){if(!motion){m.el.style.transform='';return}var half=m.el.scrollWidth/2;m.x+=m.dir*sign*(.6+Math.min(14,Math.abs(vel)*.5));
+      if(m.x<=-half)m.x+=half;if(m.x>0)m.x-=half;var sk=Math.max(-10,Math.min(10,-vel*.4));m.el.style.transform='translateX('+m.x+'px) skewX('+sk+'deg)'})})();
+
+  // Souris : pétales, cartes 3D, boutons aimantés ; toucher : ondes
+  var fine=window.matchMedia&&matchMedia('(pointer: fine)').matches,lastT=0;
+  function at(e,cls){var r=site.getBoundingClientRect(),d=document.createElement('i');d.className=cls;d.style.left=(e.clientX-r.left)+'px';d.style.top=(e.clientY-r.top)+'px';return d}
+  site.addEventListener('pointermove',function(e){if(!motion||e.pointerType!=='mouse')return;var now=performance.now();if(now-lastT<45)return;lastT=now;
+    var d=at(e,'trail');d.style.setProperty('--r',rnd(0,360)+'deg');d.style.setProperty('--dx',rnd(-30,30)+'px');site.appendChild(d);setTimeout(function(){d.remove()},1150)});
+  site.addEventListener('pointerdown',function(e){if(!motion||e.pointerType==='mouse')return;var d=at(e,'ripple');site.appendChild(d);setTimeout(function(){d.remove()},850)});
+  site.querySelectorAll('.gcard,.card,.chap,.tcard').forEach(function(c){
+    c.addEventListener('pointermove',function(e){if(!motion||e.pointerType!=='mouse')return;var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      c.classList.add('tilt');c.style.transform='perspective(800px) rotateY('+(x*10)+'deg) rotateX('+(-y*10)+'deg) translateY(-4px)'});
+    c.addEventListener('pointerleave',function(){c.style.transform='';setTimeout(function(){c.classList.remove('tilt')},200)})});
+  site.querySelectorAll('.s-cta,.s-btn').forEach(function(b){
+    b.addEventListener('pointermove',function(e){if(!motion||e.pointerType!=='mouse')return;var r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.35)+'px)'});
+    b.addEventListener('pointerleave',function(){b.style.transform=''})});
+
+
+  // ---- v6 : effets anime.js (si la bibliothèque est chargée) ----
+  if(A){site.classList.add('ajs');site.querySelectorAll('.gcard').forEach(function(g){g.classList.remove('rv')})}
+  function startGrid(){var g=document.getElementById('ldgrid'),cols=11,rows=19;g.style.gridTemplateColumns='repeat('+cols+',1fr)';
+    for(var i=0;i<cols*rows;i++)g.appendChild(document.createElement('i'));
+    gridAnim=A({targets:g.children,scale:[{value:.3,duration:500},{value:1.8,duration:700},{value:.3,duration:800}],opacity:[{value:.15},{value:.9},{value:.15}],
+      translateY:[{value:0},{value:-6},{value:0}],delay:A.stagger(70,{grid:[cols,rows],from:'center'}),loop:true,easing:'easeInOutSine'})}
+  window.animWords=function(h){if(!A)return;A({targets:h.querySelectorAll('.wd'),translateY:['90%',0],rotate:[A.stagger([-12,12]),0],opacity:[0,1],
+    delay:A.stagger(90),duration:1400,easing:'easeOutElastic(1, .6)'})};
+  window.onOpen=function(){if(!A||!motion)return;
+    A({targets:'#names .l',translateY:['1.2em',0],scale:[.3,1],rotate:[A.stagger([-40,40],{from:'center'}),0],opacity:[0,1],delay:A.stagger(70,{from:'center',start:250}),easing:'spring(1, 70, 9, 0)'});
+    A({targets:'#names .amp',rotate:[-180,0],scale:[0,1],delay:600,duration:1600,easing:'easeOutElastic(1, .5)'});
+    var d=Math.floor(Math.max(0,target-Date.now())/864e5),o={v:0};counting=true;
+    A({targets:o,v:d,round:1,duration:2200,delay:500,easing:'easeOutExpo',update:function(){document.getElementById('cd-d').textContent=o.v},complete:function(){counting=false;prev['cd-d']=String(d)}});
+    A({targets:'.count div',translateY:[30,0],opacity:[0,1],delay:A.stagger(110,{start:400}),easing:'spring(1, 80, 12, 0)'})};
+  var names=document.getElementById('names');names.style.cursor='pointer';
+  names.addEventListener('click',function(){if(!A||!motion)return;A.remove('#names .l');
+    A.timeline().add({targets:'#names .l',translateX:function(){return A.random(-140,140)},translateY:function(){return A.random(-120,90)},rotate:function(){return A.random(-200,200)},scale:function(){return A.random(5,16)/10},duration:550,easing:'easeOutExpo'})
+      .add({targets:'#names .l',translateX:0,translateY:0,rotate:0,scale:1,delay:A.stagger(40,{from:'center'}),easing:'spring(1, 70, 8, 0)'})});
+  if(A&&'IntersectionObserver' in window){var gal=site.querySelector('.gal'),io4=new IntersectionObserver(function(es){if(es[0].isIntersecting&&motion){io4.disconnect();
+      A({targets:gal.children,translateY:[80,0],rotate:[A.stagger([-8,8]),0],scale:[.85,1],opacity:[0,1],delay:A.stagger(130),duration:1300,easing:'easeOutElastic(1, .8)'})}},{root:vp,threshold:.1});io4.observe(gal)}
+  window.animTable=function(tn){if(!A||!motion)return;var gs=document.querySelectorAll('#map g'),idx=0;gs.forEach(function(g,i){if(g.classList.contains('me'))idx=i});
+    A({targets:gs,scale:[0,1],opacity:[0,1],delay:A.stagger(110,{from:idx,start:700}),easing:'easeOutBack',duration:700});
+    A({targets:'#t-name',scale:[.2,1],rotate:[-10,0],opacity:[0,1],delay:450,easing:'spring(1, 80, 9, 0)'})};
+
+
+  // ---- v7 : anime.js (suite) ----
+  // 1. Emblème qui se transforme : soleil, hibiscus, cœur, alliance
+  (function(){var N=72,i,sh={sun:[],flower:[],heart:[],ring:[]};
+    for(i=0;i<N;i++){var t=2*Math.PI*i/N,r;
+      r=36+5*Math.cos(12*t);sh.sun.push((r*Math.cos(t)).toFixed(1)+','+(r*Math.sin(t)).toFixed(1));
+      r=26+16*Math.cos(5*t);sh.flower.push((r*Math.cos(t-Math.PI/2)).toFixed(1)+','+(r*Math.sin(t-Math.PI/2)).toFixed(1));
+      var hx=16*Math.pow(Math.sin(t),3),hy=-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t));sh.heart.push((hx*2.5).toFixed(1)+','+(hy*2.5).toFixed(1));
+      r=i%2?30:40;var tt=2*Math.PI*Math.floor(i/2)/(N/2);sh.ring.push((r*Math.cos(tt)).toFixed(1)+','+(r*Math.sin(tt)+4).toFixed(1))}
+    for(var k in sh)sh[k]=sh[k].join(' ');
+    if(A)A({targets:'#morph',points:[{value:sh.flower},{value:sh.heart},{value:sh.ring},{value:sh.sun}],duration:1300,delay:1100,easing:'easeInOutQuint',loop:true});
+  })();
+
+  // 2. Horaires du programme qui défilent comme une horloge
+  if(A&&'IntersectionObserver' in window){var io5=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting||!motion)return;io5.unobserve(e.target);
+      e.target.querySelectorAll('time').forEach(function(tm,i){var p=tm.textContent.split(':'),m=+p[0]*60+ +p[1],o={v:0};
+        A({targets:o,v:m,round:1,duration:1600,delay:300+i*180,easing:'easeOutExpo',update:function(){var h=Math.floor(o.v/60),mm=o.v%60;tm.textContent=(h<10?'0':'')+h+':'+(mm<10?'0':'')+mm}})})})},{root:vp,threshold:.3});
+    site.querySelectorAll('.tl').forEach(function(t){io5.observe(t)})}
+
+  // 3. La mer de points : chaque toucher lance une onde (stagger en grille)
+  var mg=document.getElementById('mergrid'),mcols=0,mrows=9,rippling=false,lastTouch=0;
+  function buildSea(){var c=Math.max(12,Math.min(32,Math.floor((mg.clientWidth-32)/20)));if(c===mcols)return;mcols=c;mg.innerHTML='';mg.style.gridTemplateColumns='repeat('+c+',1fr)';
+    for(var i=0;i<c*mrows;i++)mg.appendChild(document.createElement('i'))}
+  function ripple(idx){if(!A||!motion||rippling)return;rippling=true;var dots=mg.children,g=[mcols,mrows];
+    A.timeline({complete:function(){rippling=false}}).add({targets:dots,
+      translateX:A.stagger('-.6rem',{grid:g,from:idx,axis:'x'}),translateY:A.stagger('-.6rem',{grid:g,from:idx,axis:'y'}),
+      scale:[{value:.3,duration:300,easing:'easeOutSine'},{value:1.6,duration:500,easing:'easeInOutQuad'}],
+      backgroundColor:[{value:'#ff7a63',duration:300},{value:'#e0303f',duration:500}],
+      delay:A.stagger(55,{grid:g,from:idx}),easing:'easeInOutQuad'})
+    .add({targets:dots,translateX:0,translateY:0,scale:1,backgroundColor:function(el,i){return i%7===6?'#3b5bb5':'#2c4590'},duration:900,delay:A.stagger(45,{grid:g,from:idx}),easing:'easeOutElastic(1, .6)'},'-=400')}
+  mg.addEventListener('pointerdown',function(e){var r=mg.getBoundingClientRect(),cw=(r.width-32)/mcols,ch=r.height/mrows;
+    var cx=Math.min(mcols-1,Math.max(0,Math.floor((e.clientX-r.left-16)/cw))),cy=Math.min(mrows-1,Math.max(0,Math.floor((e.clientY-r.top)/ch)));lastTouch=Date.now();ripple(cy*mcols+cx)});
+  buildSea();if('ResizeObserver' in window)new ResizeObserver(buildSea).observe(mg);
+  var seaVisible=false;if('IntersectionObserver' in window)new IntersectionObserver(function(es){seaVisible=es[0].isIntersecting},{root:vp}).observe(mg);
+  setInterval(function(){if(seaVisible&&Date.now()-lastTouch>4000)ripple(Math.floor(Math.random()*mcols*mrows))},4200);
+
+  // 4. Avion en papier qui emporte la réponse le long d'une trajectoire
+  window.playPlane=function(done){if(!A||!motion)return done();
+    var box=document.getElementById('rsvp-in'),fl=document.getElementById('flight'),fp=document.getElementById('fpath'),pl=document.getElementById('plane'),
+      w=box.clientWidth,h=box.clientHeight,btn=s2.querySelector('.s-btn'),br=btn.getBoundingClientRect(),bx=box.getBoundingClientRect(),
+      x0=br.left-bx.left+br.width/2,y0=br.top-bx.top+br.height/2;
+    fl.setAttribute('viewBox','0 0 '+w+' '+h);
+    fp.setAttribute('d','M'+x0+' '+y0+' C '+(w*.05)+' '+(y0-60)+', '+(w*.02)+' '+(h*.3)+', '+(w*.45)+' '+(h*.42)+' S '+(w*1.02)+' '+(h*.45)+', '+(w*.85)+' '+(h*.2)+' S '+(w*.55)+' '+(h*.02)+', '+(w*.5)+' '+(h*.12));
+    var path=A.path(fp);
+    A.timeline({easing:'easeInOutSine'})
+      .add({targets:s2,opacity:[1,.25],scale:[1,.96],duration:350,easing:'easeOutQuad'})
+      .add({targets:pl,opacity:[0,1],scale:[.3,1.2],duration:250},'-=200')
+      .add({targets:fp,opacity:[0,.8],strokeDasharray:'4 6',duration:1},'-=100')
+      .add({targets:pl,translateX:path('x'),translateY:path('y'),rotate:path('angle'),duration:1700,easing:'easeInOutQuad'})
+      .add({targets:[pl,fp],opacity:0,scale:[1,0],duration:300,easing:'easeInBack'})
+      .finished.then(function(){s2.style.opacity='';s2.style.transform='';pl.style.transform='';done()})};
+
+  // 5. Alliances dessinées au trait, puis diamant qui scintille
+  if(A&&'IntersectionObserver' in window){var rings=document.getElementById('rings'),io6=new IntersectionObserver(function(es){if(!es[0].isIntersecting||!motion)return;io6.disconnect();
+      A.timeline({easing:'easeInOutSine'})
+        .add({targets:rings.querySelectorAll('circle'),strokeDashoffset:[A.setDashoffset,0],duration:1400,delay:A.stagger(350)})
+        .add({targets:rings.querySelector('.gem'),scale:[0,1.4,1],rotate:[0,180],duration:900,easing:'easeOutElastic(1, .5)'},'-=300')
+        .add({targets:rings,rotate:[{value:-6},{value:6},{value:0}],duration:1600});
+      A({targets:rings.querySelector('.gem'),opacity:[1,.4],scale:[1,1.25],direction:'alternate',loop:true,duration:900,delay:2600,easing:'easeInOutSine'})},{root:vp,threshold:.5});io6.observe(rings)}
+
+
+  // ---- v8 : menu ----
+  var mtabs=document.getElementById('mtabs'),dcards=Array.prototype.slice.call(document.querySelectorAll('.dcard'));
+  function dishIn(list){if(!A||!motion)return;A({targets:list.map(function(c){return c.querySelector('.plate')}),rotate:[-200,0],scale:[.2,1],delay:A.stagger(90),duration:1300,easing:'easeOutElastic(1, .7)'});
+    A({targets:list,translateY:[40,0],opacity:[0,1],delay:A.stagger(90),duration:700,easing:'easeOutCubic'})}
+  mtabs.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;press(mtabs,b);var f=b.dataset.f,shown=[];
+    dcards.forEach(function(c){var on=f==='all'||c.dataset.cat===f;c.hidden=!on;if(on)shown.push(c)});dishIn(shown)});
+  if('IntersectionObserver' in window){var io7=new IntersectionObserver(function(es){if(es[0].isIntersecting&&motion){io7.disconnect();dishIn(dcards)}},{root:vp,threshold:.1});io7.observe(document.getElementById('dishes'))}
+
+  // Confirmation par code (données d'exemple)
+  var tables=[{n:'Hibiscus',x:70,y:70},{n:'Cocotier',x:160,y:62},{n:'Frangipanier',x:250,y:70},{n:'Corail',x:70,y:138},{n:'Mangrove',x:160,y:130},{n:'Alizé',x:250,y:138}];
+  var guests={K7M4PQ:{name:'Famille Ilunga',seats:4,table:'Hibiscus'},TR9X2D:{name:'Esther Kabila',seats:1,table:'Corail'}};
+  var s1=document.getElementById('step1'),s2=document.getElementById('step2'),s3=document.getElementById('step3');
+  var code=document.getElementById('code'),err=document.getElementById('err'),nb=document.getElementById('nb'),cur=null,tries=0;
+  function show(el){[s1,s2,s3].forEach(function(x){x.hidden=x!==el});if(motion){el.classList.remove('enter');void el.offsetWidth;el.classList.add('enter')}}
+  function fail(m){err.textContent=m;err.hidden=false;code.classList.remove('shake');void code.offsetWidth;if(motion)code.classList.add('shake')}
+  s1.addEventListener('submit',function(e){e.preventDefault();
+    var c=code.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+    if(c.length!==6)return fail('Le code contient 6 caractères. Recopiez-le depuis le message WhatsApp.');
+    if(!guests[c]){tries++;return fail(tries>=5?'Trop d’essais. Écrivez aux mariés sur WhatsApp pour recevoir votre code.':'Ce code ne correspond à aucune invitation. Vérifiez les lettres et les chiffres.')}
+    err.hidden=true;cur=guests[c];
+    document.getElementById('g-name').textContent=cur.name;
+    document.getElementById('g-seats').textContent=cur.seats>1?cur.seats+' places sont réservées pour vous.':'Une place est réservée pour vous.';
+    nb.innerHTML='';for(var i=cur.seats;i>=1;i--){var o=document.createElement('option');o.value=i;o.textContent=i+(i>1?' personnes':' personne');nb.appendChild(o)}
+    show(s2)});
+  s2.addEventListener('change',function(){var no=document.getElementById('att-n').checked;document.getElementById('nb-wrap').hidden=no;document.getElementById('diet-wrap').hidden=no});
+  function drawMap(tn){var ns='http://www.w3.org/2000/svg',m=document.getElementById('map');m.innerHTML='';
+    function el(t,a,p){var x=document.createElementNS(ns,t);for(var q in a)x.setAttribute(q,a[q]);(p||m).appendChild(x);return x}
+    el('rect',{x:4,y:4,width:312,height:176,rx:12,'class':'floor'});
+    el('rect',{x:120,y:12,width:80,height:22,rx:4,'class':'floor'});el('text',{x:160,y:27,'text-anchor':'middle'}).textContent='Piste de danse';
+    tables.forEach(function(t){var g=el('g',{'class':t.n===tn?'me':''});if(t.n===tn)el('circle',{cx:t.x,cy:t.y,r:24,'class':'halo'},g);el('circle',{cx:t.x,cy:t.y,r:24,'class':'tb'},g);el('text',{x:t.x,y:t.y+3,'text-anchor':'middle'},g).textContent=t.n});
+    el('path',{d:'M0 196 Q 20 188 40 196 T 80 196 T 120 196 T 160 196 T 200 196 T 240 196 T 280 196 T 320 196','class':'water'});
+    el('text',{x:160,y:208,'text-anchor':'middle'}).textContent='Golfe de Guinée'}
+  function burst(){if(!motion)return;var box=document.getElementById('rsvp-in');for(var i=0;i<28;i++){var b=document.createElement('i');b.className='burst';var a=Math.random()*6.28,d=90+Math.random()*170;b.style.setProperty('--x',Math.cos(a)*d+'px');b.style.setProperty('--y',Math.sin(a)*d-40+'px');b.style.setProperty('--r',(Math.random()*720-360)+'deg');box.appendChild(b);setTimeout(function(x){return function(){x.remove()}}(b),1500)}}
+  s2.addEventListener('submit',function(e){e.preventDefault();
+    var no=document.getElementById('att-n').checked, tc=document.getElementById('tcard'), mp=document.getElementById('map');
+    document.getElementById('d-title').textContent=no?'Merci de nous avoir prévenus':'Merci, c’est noté !';
+    tc.hidden=no;mp.hidden=no;
+    if(no){document.getElementById('d-text').textContent='Vous nous manquerez. Votre mot sera transmis à Gaël et Clarisse.'}
+    else{document.getElementById('t-name').textContent=cur.table;
+      document.getElementById('t-sub').textContent=nb.value+(nb.value>1?' places':' place')+' · '+cur.name;
+      drawMap(cur.table);
+      document.getElementById('d-text').textContent='Gardez votre code : il vous sera demandé à l’entrée de la soirée.';
+      tc.style.animation='none';void tc.offsetWidth;tc.style.animation='';}
+    var fin=function(){show(s3);if(!no){burst();if(window.animTable)animTable(cur.table)}};if(!no&&window.playPlane)playPlane(fin);else fin()});
+  document.getElementById('back').addEventListener('click',function(){code.value='';show(s1);code.focus()});
+  document.getElementById('edit').addEventListener('click',function(){show(s2)});
+})();
+</script>
