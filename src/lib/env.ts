@@ -8,7 +8,12 @@ function required(name: string): string {
 
 export const env = {
   get supabaseUrl() { return required("SUPABASE_URL"); },
-  get supabaseServiceKey() { return required("SUPABASE_SERVICE_ROLE_KEY"); },
+  /** Clé secrète Supabase (sb_secret_…). L'ancienne clé service_role est encore acceptée. */
+  get supabaseServiceKey() {
+    const k = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY;
+    if (!k) throw new Error("Variable d'environnement manquante : SUPABASE_SECRET_KEY (voir .env.example)");
+    return k;
+  },
   get adminPassword() { return required("ADMIN_PASSWORD"); },
   get sessionSecret() {
     const s = required("SESSION_SECRET");
@@ -16,5 +21,5 @@ export const env = {
     return s;
   },
   get siteUrl() { return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"; },
-  get isConfigured() { return Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY); },
+  get isConfigured() { return Boolean(process.env.SUPABASE_URL && (process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY)); },
 };

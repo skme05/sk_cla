@@ -31,7 +31,7 @@ src/
     whatsapp.ts           Messages d'invitation / relance et liens wa.me
     validation.ts         Validation des saisies (zod), numéros ivoiriens par défaut
     session.ts, auth.ts   Session admin signée (cookie httpOnly)
-    repo.ts               Accès aux données (clé service_role, côté serveur uniquement)
+    repo.ts               Accès aux données (clé secrète Supabase, côté serveur uniquement)
 supabase/
   migrations/             Schéma de la base
   seed.sql                Données d'exemple : 6 tables, 2 foyers de test, menu proposé
@@ -57,7 +57,7 @@ Règles garanties par la base :
 - Un code a toujours 6 caractères parmi `ABCDEFGHJKLMNPQRSTUVWXYZ23456789`.
 - Une réponse « présent » compte au moins une personne, une réponse « absent » n'en compte aucune.
 - Le nombre de personnes ne peut pas dépasser les places du foyer.
-- Le RLS est activé partout sans aucune politique : les clés publiques de Supabase n'ont accès à rien. Seul le serveur (clé `service_role`) lit et écrit.
+- Le RLS est activé partout sans aucune politique : les clés publiques de Supabase n'ont accès à rien. Seul le serveur, avec la clé secrète (`sb_secret_…`), lit et écrit.
 
 ## Mise en route
 
@@ -65,6 +65,10 @@ Règles garanties par la base :
 2. **Créer le schéma** : copier `supabase/migrations/20261102120000_init.sql` dans l'éditeur SQL de Supabase et l'exécuter. Ou, avec la CLI Supabase : `supabase link` puis `supabase db push`.
 3. **Données d'exemple** (facultatif) : exécuter `supabase/seed.sql`. Codes de test : `K7M4PQ` (Famille Ilunga, 4 places, table Hibiscus) et `TR9X2D` (Esther Kabila, 1 place, table Corail).
 4. **Variables d'environnement** : copier `.env.example` en `.env.local` et le remplir.
+   - `SUPABASE_URL` : Project Settings › Data API › Project URL.
+   - `SUPABASE_SECRET_KEY` : Project Settings › API Keys › **Secret key** (`sb_secret_…`). La *Publishable key* n'est pas utilisée.
+   - `ADMIN_PASSWORD` : le mot de passe de l'espace mariés.
+   - `SESSION_SECRET` : une longue chaîne aléatoire (`openssl rand -base64 48`).
 5. **Lancer le site** :
 
 ```bash

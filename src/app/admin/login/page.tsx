@@ -9,7 +9,7 @@ export default async function Login({ searchParams }: { searchParams: Promise<{ 
     return (
       <main className="admin"><div className="wrap" style={{ maxWidth: 520 }}>
         <h1>Espace mariés</h1>
-        <p className="error">Le site n&apos;est pas encore configuré : renseignez SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, ADMIN_PASSWORD et SESSION_SECRET (32 caractères minimum). Voir le README.</p>
+        <p className="error">Le site n&apos;est pas encore configuré : renseignez SUPABASE_URL, SUPABASE_SECRET_KEY, ADMIN_PASSWORD et SESSION_SECRET (32 caractères minimum). Voir le README.</p>
       </div></main>
     );
   }
