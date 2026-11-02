@@ -69,6 +69,8 @@ Règles garanties par la base :
    - `SUPABASE_SECRET_KEY` : Project Settings › API Keys › **Secret key** (`sb_secret_…`). La *Publishable key* n'est pas utilisée.
    - `ADMIN_PASSWORD` : le mot de passe de l'espace mariés.
    - `SESSION_SECRET` : une longue chaîne aléatoire (`openssl rand -base64 48`).
+   - `NEXT_PUBLIC_SITE_URL` : l'adresse publique du site, utilisée dans les liens WhatsApp. Si elle manque, le site prend le domaine de production Vercel, puis l'adresse depuis laquelle l'espace mariés est ouvert.
+   - `SUPABASE_SERVICE_ROLE_KEY` est accepté à la place de `SUPABASE_SECRET_KEY` (même rôle).
 5. **Lancer le site** :
 
 ```bash

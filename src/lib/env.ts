@@ -20,6 +20,16 @@ export const env = {
     if (s.length < 32) throw new Error("SESSION_SECRET doit faire au moins 32 caractères");
     return s;
   },
-  get siteUrl() { return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"; },
+  /**
+   * URL publique utilisée dans les liens WhatsApp. Ordre : NEXT_PUBLIC_SITE_URL, puis le domaine
+   * de production Vercel, puis l'adresse de la requête en cours (jamais localhost chez un invité).
+   */
+  siteUrlFrom(requestOrigin?: string | null): string {
+    const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+    if (explicit) return explicit;
+    const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+    if (vercel) return `https://${vercel}`;
+    return requestOrigin ?? "http://localhost:3000";
+  },
   get isConfigured() { return Boolean(process.env.SUPABASE_URL && (process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY)); },
 };

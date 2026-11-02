@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { requireAdmin } from "@/lib/auth";
 import { getGuestOverview, getTables } from "@/lib/repo";
 import { invitationMessage, reminderMessage, whatsappUrl } from "@/lib/whatsapp";
@@ -14,7 +15,9 @@ export default async function Admin({ searchParams }: { searchParams: Promise<{ 
   await requireAdmin();
   const { erreur } = await searchParams;
   const [guests, tables] = await Promise.all([getGuestOverview(), getTables()]);
-  const site = env.siteUrl;
+  const h = await headers();
+  const host = h.get("x-forwarded-host") ?? h.get("host");
+  const site = env.siteUrlFrom(host ? `${h.get("x-forwarded-proto") ?? (host.startsWith("localhost") ? "http" : "https")}://${host}` : null);
 
   const invited = guests.reduce((n, g) => n + g.seats, 0);
   const coming = guests.filter((g) => g.status === "attending").reduce((n, g) => n + g.guest_count, 0);
@@ -83,7 +86,7 @@ export default async function Admin({ searchParams }: { searchParams: Promise<{ 
       <h2>Tables</h2>
       <div className="stats">
         {tables.map((t) => (
-          <div className="stat" key={t.id}><b>{t.guests_confirmed}<span style={{ fontSize: 14 }}> / {t.capacity}</span></b><span>{t.name} · {t.seats_assigned} places attribuées</span></div>
+          <div className="stat" key={t.id}><b>{t.guests_confirmed}<span style={{ fontSize: 14 }}> / {t.capacity}</span></b><span>{t.name} · {t.seats_assigned} {t.seats_assigned > 1 ? "places attribuées" : "place attribuée"}</span></div>
         ))}
       </div>
     </div></main>
