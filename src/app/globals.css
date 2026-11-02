@@ -1,91 +1,14 @@
-/* Base visuelle reprise de la maquette (docs/maquette.html). Les animations seront portées à l'étape suivante. */
-:root {
-  --navy: #0b1533; --navy2: #13214d; --deep: #060c22;
-  --red: #e0303f; --coral: #ff7a63; --sand: #f4e7d0; --muted: #a9b3cf;
-  --line: rgba(244, 231, 208, 0.16); --ink: #fff;
-  --f-display: "Bodoni Moda", Didot, Georgia, serif;
-  --f-body: "Jost", system-ui, sans-serif;
-  --f-script: "Pinyon Script", "Snell Roundhand", cursive;
-  color-scheme: dark;
-}
+/* Base commune. Le site public est dans site.css (porté de docs/maquette.html), l'espace mariés ci-dessous. */
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; background: var(--navy); color: var(--sand); font-family: var(--f-body); font-size: 16px; line-height: 1.6; }
-h1, h2, h3, h4 { text-wrap: balance; line-height: 1.15; margin: 0; font-weight: 400; }
+html, body { margin: 0; }
+body { background: #0b1533; color: #f4e7d0; font-family: "Jost", system-ui, sans-serif; -webkit-text-size-adjust: 100%; }
+h1, h2, h3, h4 { text-wrap: balance; line-height: 1.2; margin: 0; }
 a { color: inherit; }
-.wrap { max-width: 880px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
-section { padding-block: 72px; border-top: 1px solid var(--line); }
-.lbl { display: block; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
-.h { font-family: var(--f-display); font-size: clamp(30px, 6vw, 46px); margin-bottom: 28px; }
-.h em { color: var(--coral); }
-
-.nav { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; gap: 16px; padding: 12px max(20px, env(safe-area-inset-right)) 12px max(20px, env(safe-area-inset-left)); background: rgba(6, 12, 34, .85); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-.mono { font-family: var(--f-script); font-size: 26px; margin-right: auto; }
-.mono b { color: var(--red); font-weight: 400; }
-.cta, .btn { display: inline-block; font: inherit; font-weight: 500; text-decoration: none; border: 1px solid var(--red); background: var(--red); color: var(--ink); padding: 10px 20px; border-radius: 999px; cursor: pointer; }
-.btn.ghost { background: transparent; color: var(--sand); border-color: var(--line); }
-.btn:disabled { opacity: .6; cursor: wait; }
-.cta:focus-visible, .btn:focus-visible, .inp:focus-visible { outline: 2px solid var(--sand); outline-offset: 2px; }
-
-.hero { text-align: center; padding-block: 96px 80px; border: 0; background: linear-gradient(180deg, var(--deep), var(--navy) 50%, #3a1a3f 90%, #6b1f35); }
-.kicker { font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
-.names { font-family: var(--f-display); font-style: italic; font-size: clamp(52px, 13vw, 120px); line-height: 1; margin: 16px 0 8px; }
-.names .amp { font-family: var(--f-script); font-style: normal; color: var(--red); margin: 0 .1em; }
-.date { font-family: var(--f-display); font-size: 22px; }
-.place { color: var(--muted); margin-bottom: 28px; }
-
-.letter { max-width: 60ch; font-size: 18px; }
-.fam { font-family: var(--f-display); font-style: italic; color: var(--muted); }
-.sign { font-family: var(--f-script); font-size: 36px; color: var(--coral); }
-
-.days { display: grid; gap: 36px; }
-@media (min-width: 720px) { .days { grid-template-columns: 1fr 1fr; } }
-.day h3 { font-family: var(--f-display); font-size: 22px; margin-bottom: 8px; }
-.ev { display: grid; grid-template-columns: 62px 1fr; gap: 12px; padding: 12px 0; border-bottom: 1px dashed var(--line); }
-.ev time { font-family: var(--f-display); font-size: 20px; color: var(--coral); font-variant-numeric: tabular-nums; }
-.ev span { display: block; color: var(--muted); font-size: 15px; }
-.ev.hi strong { color: var(--coral); }
-
-.grid { display: grid; gap: 16px; }
-@media (min-width: 640px) { .grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } }
-.card { background: rgba(6, 12, 34, .45); border: 1px solid var(--line); border-radius: 16px; padding: 20px; min-width: 0; }
-.card h4 { font-family: var(--f-display); font-size: 20px; margin-bottom: 4px; }
-.card p { margin: 0; color: var(--muted); font-size: 15px; }
-.course { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--red); }
-.tag { display: inline-block; margin-top: 8px; font-size: 11px; border: 1px solid var(--coral); color: var(--coral); border-radius: 999px; padding: 2px 9px; }
-.dishimg { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 50%; margin-bottom: 12px; }
-
-#rsvp .wrap { max-width: 560px; }
-.form { display: grid; gap: 14px; background: rgba(19, 33, 77, .6); border: 1px solid var(--line); border-radius: 20px; padding: 22px; }
-.form label { display: grid; gap: 6px; font-size: 14px; font-weight: 500; }
-.inp { font: inherit; font-size: 17px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--deep); color: var(--sand); width: 100%; }
-.code { text-align: center; letter-spacing: .3em; text-transform: uppercase; font-size: 22px; }
-.hint { margin: 0; font-size: 14px; color: var(--muted); }
-.err { margin: 0; color: var(--coral); font-size: 14px; }
-.guest { margin: 0; font-family: var(--f-display); font-size: 26px; }
-.choice { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.choice label { display: block; border: 1px solid var(--line); border-radius: 12px; padding: 14px; text-align: center; cursor: pointer; font-weight: 400; }
-.choice label.on { border-color: var(--red); background: rgba(224, 48, 63, .15); }
-.choice input { position: absolute; opacity: 0; }
-.done { text-align: center; justify-items: center; }
-.tcard { width: 100%; border-radius: 16px; padding: 20px; background: linear-gradient(135deg, var(--red), #9d1427); color: var(--ink); display: grid; }
-.tcard small { font-size: 11px; letter-spacing: .24em; text-transform: uppercase; }
-.tname { font-family: var(--f-script); font-size: 52px; line-height: 1.1; }
-.map { width: 100%; height: auto; }
-.map text { font-size: 9px; fill: var(--muted); }
-.map .floor { fill: rgba(244, 231, 208, .06); stroke: var(--line); }
-.map .tb { fill: var(--navy2); stroke: var(--line); }
-.map .me .tb { fill: var(--red); stroke: var(--red); }
-.map .me text { fill: var(--ink); }
-.map .water { fill: none; stroke: #3b5bb5; stroke-width: 2; }
-
-footer { text-align: center; padding-block: 44px; background: var(--deep); color: var(--muted); font-size: 14px; }
-footer b { color: var(--red); font-weight: 500; }
-.notice { background: rgba(224, 48, 63, .15); border: 1px solid var(--red); border-radius: 12px; padding: 12px 16px; font-size: 14px; }
 
 /* ---- Espace mariés ---- */
 .admin { background: #f5f6f8; color: #1b1f2a; min-height: 100vh; font-family: system-ui, sans-serif; color-scheme: light; }
-.admin .wrap { max-width: 1100px; padding-block: 32px; }
+.admin .wrap { max-width: 1100px; margin: 0 auto; padding: 32px max(20px, env(safe-area-inset-right)) 32px max(20px, env(safe-area-inset-left)); }
+.admin h1, .admin h2 { line-height: 1.2; }
 .admin h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
 .admin h2 { font-size: 18px; font-weight: 700; margin: 32px 0 12px; }
 .admin .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 20px; }

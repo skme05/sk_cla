@@ -4,7 +4,7 @@ Site d'invitation au mariage de Gaël et Clarisse, le **samedi 13 février 2027 
 
 Chaque foyer invité reçoit par WhatsApp un **code à 6 caractères**. Avec ce code, il confirme sa présence sur le site, indique son régime alimentaire et découvre **sa table** sur le plan de la salle.
 
-La maquette validée (animations, loader, esquisses, menu) est dans [`docs/maquette.html`](docs/maquette.html) : ouvrez-la dans un navigateur.
+La maquette validée (animations, loader, esquisses, menu) est dans [`docs/maquette.html`](docs/maquette.html) ; elle est désormais portée dans le site.
 
 ## Technologies
 
@@ -13,6 +13,7 @@ La maquette validée (animations, loader, esquisses, menu) est dans [`docs/maque
 | Site et API | Next.js 16 (App Router, TypeScript) |
 | Base de données | Supabase (PostgreSQL) |
 | Hébergement | Vercel |
+| Animations | CSS + anime.js 3 |
 | Tests | Vitest + script de contrôle SQL |
 
 ## Structure
@@ -20,14 +21,18 @@ La maquette validée (animations, loader, esquisses, menu) est dans [`docs/maque
 ```
 src/
   app/
-    page.tsx              Site public : accueil, invitation, programme, menu, infos, confirmation
+    page.tsx              Site public : loader, accueil, invitation, histoire, programme, menu, lieu, infos, confirmation
+    site.css              Design et animations du site public (portés de la maquette)
     api/rsvp/lookup/      POST { code } → foyer, places, réponse, table
     api/rsvp/             POST { code, attending, guestCount, diet, message } → enregistre la réponse
     admin/                Espace mariés (mot de passe) : invités, codes, envoi WhatsApp, tables
-  components/Rsvp.tsx     Parcours de confirmation (code → réponse → table)
-  content/wedding.ts      Textes, date, programme, infos pratiques
+  components/Rsvp.tsx     Parcours de confirmation (code → réponse → avion en papier → table)
+  components/SiteMotion.tsx  Lance les animations du site (lib/site-motion.ts, anime.js)
+  content/wedding.ts      Textes, date, programme, histoire, lieu, infos pratiques
+  content/illustrations.ts  Esquisses du lieu et assiettes du menu (SVG)
   lib/
     codes.ts              Codes sans caractères ambigus (ni 0/O ni 1/I)
+    motion.ts             « Réduire les animations » et détection des petits téléphones
     whatsapp.ts           Messages d'invitation / relance et liens wa.me
     validation.ts         Validation des saisies (zod), numéros ivoiriens par défaut
     session.ts, auth.ts   Session admin signée (cookie httpOnly)

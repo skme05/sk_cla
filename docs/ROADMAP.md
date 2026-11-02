@@ -10,14 +10,19 @@
 - [x] Espace mariés : connexion, statistiques, ajout de foyer, bouton WhatsApp (invitation puis relance), suivi des envois, remplissage des tables
 - [x] Tests unitaires et contrôle du schéma SQL
 
-## Étape 2 : le site public tel que la maquette
+## Fait (étape 2 : le site public tel que la maquette)
 
-- [ ] Porter le design et les animations de `docs/maquette.html` : loader « Ouvrir l'invitation », bruit des vagues, soleil couchant, palmiers, pétales, mouettes
-- [ ] Animations au défilement, « Notre histoire » horizontale, pirogue, bandeaux défilants
-- [ ] Esquisses du lieu, puis vraies photos
-- [ ] Menu illustré avec onglets, puis photos du traiteur
-- [ ] Effets anime.js : prénoms, mer de points, avion en papier, alliances, emblème
-- [ ] Respect de « réduire les animations » et version légère pour petits téléphones
+- [x] Design et animations de `docs/maquette.html` portés dans le site : loader « Ouvrir l'invitation » (une fois par visite), bruit des vagues généré (coupable, choix mémorisé), soleil couchant, palmiers, pétales, mouettes, lucioles
+- [x] Animations au défilement, « Notre histoire » horizontale, pirogue, bandeaux défilants, parallaxe
+- [x] Esquisses du lieu et de notre histoire qui se dessinent (champ `photo` prévu dans `src/content/wedding.ts`)
+- [x] Menu illustré avec onglets, branché sur la base ; une photo (`image_url`) remplace l'illustration
+- [x] Effets anime.js : prénoms, compte à rebours, mer de points, avion en papier, table dévoilée, alliances, emblème
+- [x] Respect de « réduire les animations » (système et bouton en pied de page) et version légère pour petits téléphones
+
+## Étape 2 bis : contenus
+
+- [ ] Vraies photos du couple et du lieu (remplacer les esquisses)
+- [ ] Photos du traiteur dans `menu_items.image_url`
 
 ## Étape 3 : espace mariés complet
 
